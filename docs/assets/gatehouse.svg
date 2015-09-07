@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" role="img"
+     aria-labelledby="ghTitle ghDesc" font-family="'Iosevka','JetBrains Mono',ui-monospace,monospace">
+  <title id="ghTitle">Palisade gatehouse: the five checks before a command is admitted</title>
+  <desc id="ghDesc">A stone gatehouse with a copper portcullis. A command approaches from the
+  left and must clear five wardens (program, args, env, path, time) before the portcullis
