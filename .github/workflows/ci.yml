@@ -7,3 +7,7 @@ on:
 
 jobs:
   rust:
+    name: Rust launcher (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
