@@ -13,3 +13,9 @@
     <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#3f5a73"/>
       <stop offset="1" stop-color="#26384a"/>
+    </linearGradient>
+    <linearGradient id="copper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d98a4e"/>
+      <stop offset="1" stop-color="#9c5a2c"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
