@@ -3,3 +3,9 @@
   <title id="rcTitle">The receipt: a machine-readable record of what was actually run</title>
   <desc id="rcDesc">A parchment terminal on which palisade inscribes a JSON receipt line by line
   (policy name, resolved path, arguments, environment mode, effective env key names, declared
+  network mode, timeout, duration, and outcome), then presses a wax seal. Env values are never
+  recorded; only key names.</desc>
+
+  <defs>
+    <linearGradient id="rcParch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6efdc"/>
