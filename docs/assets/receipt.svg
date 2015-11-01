@@ -9,3 +9,8 @@
   <defs>
     <linearGradient id="rcParch" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#f6efdc"/>
+      <stop offset="1" stop-color="#e8dabb"/>
+    </linearGradient>
+    <linearGradient id="rcSteel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f5a73"/>
+      <stop offset="1" stop-color="#22323f"/>
