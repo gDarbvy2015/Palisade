@@ -3,3 +3,8 @@
   <title id="ghTitle">Palisade gatehouse: the five checks before a command is admitted</title>
   <desc id="ghDesc">A stone gatehouse with a copper portcullis. A command approaches from the
   left and must clear five wardens (program, args, env, path, time) before the portcullis
+  rises and admits it. This depicts userspace policy validation, not kernel isolation.</desc>
+
+  <defs>
+    <linearGradient id="parchment" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4ecd8"/>
