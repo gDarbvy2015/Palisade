@@ -8,3 +8,8 @@
   <defs>
     <linearGradient id="parchment" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#f4ecd8"/>
+      <stop offset="1" stop-color="#e6d8b8"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f5a73"/>
+      <stop offset="1" stop-color="#26384a"/>
