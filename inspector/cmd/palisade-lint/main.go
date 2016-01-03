@@ -11,3 +11,17 @@
 //	palisade-lint help
 //	palisade-lint version
 //
+// Exit codes:
+//
+//	0  success (no errors; also no warnings when --strict)
+//	1  usage error
+//	2  one or more policies had errors (or warnings under --strict)
+//	3  a policy file could not be read or parsed
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"strings"
+
