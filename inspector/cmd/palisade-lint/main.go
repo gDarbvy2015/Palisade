@@ -25,3 +25,16 @@ import (
 	"os"
 	"strings"
 
+	"github.com/example/palisade/inspector/internal/lint"
+	"github.com/example/palisade/inspector/internal/policy"
+)
+
+const version = "0.1.0"
+
+const usage = `palisade-lint — inspect and lint palisade policy files
+
+USAGE:
+    palisade-lint lint    [--json] [--strict] <policy>...
+    palisade-lint inspect [--json] <policy>
+    palisade-lint help
+    palisade-lint version
