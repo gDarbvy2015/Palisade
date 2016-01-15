@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" role="img"
+     aria-labelledby="rcTitle rcDesc" font-family="'Iosevka','JetBrains Mono',ui-monospace,monospace">
+  <title id="rcTitle">The receipt: a machine-readable record of what was actually run</title>
+  <desc id="rcDesc">A parchment terminal on which palisade inscribes a JSON receipt line by line
+  (policy name, resolved path, arguments, environment mode, effective env key names, declared
