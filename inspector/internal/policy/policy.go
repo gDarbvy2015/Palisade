@@ -1,0 +1,10 @@
+// Package policy parses the palisade policy format. Its grammar is identical
+// to the Rust launcher's parser (see launcher/src/policy.rs and docs/POLICY.md)
+// so that a single policy file is understood the same way by both tools.
+//
+// The format is a small, line-oriented, INI-like language:
+//
+//	# comments start with '#'
+//	key = value        # scalar assignment
+//	key += value       # append to a list-valued key
+//	[section]          # section header
