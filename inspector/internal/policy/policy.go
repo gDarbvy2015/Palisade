@@ -8,3 +8,13 @@
 //	key = value        # scalar assignment
 //	key += value       # append to a list-valued key
 //	[section]          # section header
+//
+// Values are plain strings; there is no quoting or escaping layer. Whitespace
+// around keys and values is trimmed. A '#' anywhere begins a comment.
+package policy
+
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
