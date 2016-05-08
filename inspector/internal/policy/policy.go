@@ -18,3 +18,14 @@ import (
 	"sort"
 	"strings"
 )
+
+// ParseError carries a 1-based line number and a message.
+type ParseError struct {
+	Line    int
+	Message string
+}
+
+func (e *ParseError) Error() string {
+	return fmt.Sprintf("policy parse error on line %d: %s", e.Line, e.Message)
+}
+
