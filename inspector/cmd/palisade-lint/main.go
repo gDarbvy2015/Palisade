@@ -38,3 +38,17 @@ USAGE:
     palisade-lint inspect [--json] <policy>
     palisade-lint help
     palisade-lint version
+
+COMMANDS:
+    lint      Validate one or more policies and print diagnostics.
+    inspect   Print a structured summary of a single policy.
+    help      Show this help.
+    version   Print the version.
+
+OPTIONS:
+    --json     Emit machine-readable JSON instead of text.
+    --strict   Treat warnings as failures (affects exit code).
+
+This tool never executes programs; it only analyzes policy files.`
+
+func main() {
