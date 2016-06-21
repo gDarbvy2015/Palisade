@@ -12,3 +12,18 @@ import (
 
 	"github.com/example/palisade/inspector/internal/policy"
 )
+
+// Severity classifies a diagnostic.
+type Severity int
+
+const (
+	// Error means the policy would be rejected by the launcher.
+	Error Severity = iota
+	// Warning means the policy is valid but likely unsafe or surprising.
+	Warning
+	// Info is an advisory note.
+	Info
+)
+
+func (s Severity) String() string {
+	switch s {
