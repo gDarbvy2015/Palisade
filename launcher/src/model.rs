@@ -17,3 +17,22 @@ pub enum EnvMode {
     Inherit,
 }
 
+/// Declared network intent. Palisade cannot enforce network access in
+/// userspace; this field documents intent and is surfaced in the receipt and
+/// by the linter. See the README security boundary section.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum NetMode {
+    /// The command declares it needs no network.
+    None,
+    /// The command declares it may use the network (advisory only).
+    Allow,
+}
+
+/// A fully validated policy ready to drive execution.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Policy {
+    /// Human-readable policy name.
+    pub name: String,
+    /// The program to run. May be a bare name (resolved via PATH) or a path.
+    pub program: String,
+    /// Whether the resolved program must live under one of `path.roots`.
