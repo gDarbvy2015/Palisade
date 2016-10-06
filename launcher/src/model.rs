@@ -36,3 +36,22 @@ pub struct Policy {
     /// The program to run. May be a bare name (resolved via PATH) or a path.
     pub program: String,
     /// Whether the resolved program must live under one of `path.roots`.
+    pub path_roots: Vec<String>,
+    /// Fixed leading arguments always passed to the program.
+    pub fixed_args: Vec<String>,
+    /// Allow-list of additional arguments the caller may pass. If empty and
+    /// `allow_extra_args` is false, no caller args are permitted.
+    pub allowed_args: Vec<String>,
+    /// When true, any caller-supplied argument is permitted (the arg
+    /// allow-list is not consulted).
+    pub allow_extra_args: bool,
+    /// Environment handling mode.
+    pub env_mode: EnvMode,
+    /// Names to pass through from the parent environment (Clean mode).
+    pub env_pass: Vec<String>,
+    /// Names to remove from the inherited environment (Inherit mode).
+    pub env_remove: Vec<String>,
+    /// Explicit KEY=VALUE assignments applied last in both modes.
+    pub env_set: Vec<(String, String)>,
+    /// Working directory for the child, if specified.
+    pub workdir: Option<String>,
