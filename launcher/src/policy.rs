@@ -8,3 +8,13 @@
 //!
 //! ```text
 //! # comments start with '#' and run to end of line
+//! key = value                # scalar assignment
+//! key += value               # append to a list-valued key
+//! [section]                  # section header (currently: [exec], [env], [args], [path], [net])
+//! ```
+//!
+//! Blank lines are ignored. Leading and trailing whitespace around keys and
+//! values is trimmed. Values are always plain strings; there is no quoting or
+//! escaping layer, which keeps the parser predictable and auditable. A value
+//! that must contain a leading/trailing space is not supported by design.
+//!
