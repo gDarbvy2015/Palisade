@@ -18,3 +18,14 @@
 //! escaping layer, which keeps the parser predictable and auditable. A value
 //! that must contain a leading/trailing space is not supported by design.
 //!
+//! See `docs/POLICY.md` for the full specification.
+
+use std::collections::BTreeMap;
+use std::fmt;
+
+/// A parse error with 1-based line context.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ParseError {
+    pub line: usize,
+    pub message: String,
+}
