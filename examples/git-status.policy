@@ -1,1 +1,3 @@
 # examples/git-status.policy
+#
+# Run `git status` with an inherited environment (git needs HOME, PATH, and
