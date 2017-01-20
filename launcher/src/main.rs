@@ -31,3 +31,14 @@ USAGE:
     palisade version
 
 COMMANDS:
+    run      Load a policy, validate, and execute the described program.
+    check    Load and validate a policy without executing anything.
+    help     Show this help.
+    version  Print the version.
+
+OPTIONS:
+    --policy <FILE>    Path to the policy file (required for run/check).
+    --receipt <FILE>   Write the execution receipt (JSON) to FILE.
+                       If omitted, the receipt is printed to stderr.
+    --                 Everything after this is passed as extra arguments to
+                       the child, subject to the args allow-list.
