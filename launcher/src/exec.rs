@@ -13,3 +13,19 @@ use std::time::{Duration, Instant};
 /// The outcome of an execution attempt.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Outcome {
+    /// Child exited on its own with the given code (None if terminated by a
+    /// signal on Unix and no code is available).
+    Exited(Option<i32>),
+    /// The child exceeded the timeout and was killed.
+    TimedOut,
+}
+
+/// A record of what was executed and how it ended — the "receipt".
+#[derive(Debug, Clone)]
+pub struct Receipt {
+    pub policy_name: String,
+    pub program: String,
+    pub resolved_path: String,
+    pub args: Vec<String>,
+    pub env_mode: String,
+    pub effective_env_keys: Vec<String>,
