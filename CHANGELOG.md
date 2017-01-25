@@ -7,3 +7,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [0.1.0] - 2026-08-31
 
 ### Added
+
+- **Policy format** (`docs/POLICY.md`): a tiny INI-like grammar with `=` scalars
