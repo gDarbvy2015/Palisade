@@ -25,3 +25,12 @@ func TestMissingProgramIsError(t *testing.T) {
 	}
 	if !r.HasErrors() {
 		t.Errorf("expected HasErrors to be true")
+	}
+}
+
+func TestValidMinimalPolicyHasNoErrors(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1000\n")
+	if r.HasErrors() {
+		t.Errorf("expected no errors, got %+v", r.Diagnostics)
+	}
+}
