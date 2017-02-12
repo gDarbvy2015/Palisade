@@ -20,3 +20,14 @@ use palisade::{execute, resolve, ExecPlan, Outcome, Policy};
 use std::process::ExitCode;
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
+
+const USAGE: &str = "\
+palisade — userspace declarative command policy launcher
+
+USAGE:
+    palisade run   --policy <FILE> [--receipt <FILE>] [-- <extra args>...]
+    palisade check --policy <FILE>
+    palisade help
+    palisade version
+
+COMMANDS:
