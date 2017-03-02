@@ -52,3 +52,17 @@ OPTIONS:
 This tool never executes programs; it only analyzes policy files.`
 
 func main() {
+	os.Exit(run(os.Args[1:]))
+}
+
+func run(args []string) int {
+	if len(args) == 0 {
+		fmt.Fprintln(os.Stderr, usage)
+		return 1
+	}
+	switch args[0] {
+	case "help", "-h", "--help":
+		fmt.Println(usage)
+		return 0
+	case "version", "-V", "--version":
+		fmt.Printf("palisade-lint %s\n", version)
