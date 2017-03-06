@@ -17,3 +17,13 @@ fn echo_policy(extra_allow: bool) -> String {
              [args]\n\
              fixed = /C\n\
              fixed += echo\n\
+             fixed += hello\n\
+             allow_extra = {extra_allow}\n\
+             [env]\n\
+             mode = clean\n"
+        )
+    } else {
+        format!(
+            "name = echo-test\n\
+             [exec]\n\
+             program = sh\n\
