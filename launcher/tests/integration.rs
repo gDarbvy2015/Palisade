@@ -7,3 +7,13 @@ use palisade::{execute, resolve, ExecPlan, Outcome, Policy};
 
 /// Build a policy that runs a portable "print a string" command.
 fn echo_policy(extra_allow: bool) -> String {
+    if cfg!(windows) {
+        // Use cmd.exe /C echo. Fixed args carry the /C echo hello.
+        format!(
+            "name = echo-test\n\
+             [exec]\n\
+             program = cmd\n\
+             timeout_ms = 5000\n\
+             [args]\n\
+             fixed = /C\n\
+             fixed += echo\n\
