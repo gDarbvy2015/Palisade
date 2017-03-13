@@ -6,3 +6,5 @@
 LAUNCHER_DIR := launcher
 INSPECTOR_DIR := inspector
 
+# Path to the built Go linter used by lint-examples.
+ifeq ($(OS),Windows_NT)
