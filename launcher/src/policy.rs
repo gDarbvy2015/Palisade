@@ -29,3 +29,13 @@ pub struct ParseError {
     pub line: usize,
     pub message: String,
 }
+
+impl fmt::Display for ParseError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "policy parse error on line {}: {}",
+            self.line, self.message
+        )
+    }
+}
