@@ -49,3 +49,14 @@ pub struct Assignment {
     pub key: String,
     pub value: String,
     pub append: bool,
+    pub line: usize,
+}
+
+/// The raw parsed document: an ordered list of assignments plus a fast lookup.
+///
+/// Scalar keys resolve to the last assignment; list keys accumulate via `+=`.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct Document {
+    pub assignments: Vec<Assignment>,
+}
+
