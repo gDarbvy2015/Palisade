@@ -27,3 +27,17 @@ const (
 
 func (s Severity) String() string {
 	switch s {
+	case Error:
+		return "error"
+	case Warning:
+		return "warning"
+	case Info:
+		return "info"
+	default:
+		return "unknown"
+	}
+}
+
+// MarshalJSON emits the severity as its string form for readable JSON.
+func (s Severity) MarshalJSON() ([]byte, error) {
+	return []byte(`"` + s.String() + `"`), nil
