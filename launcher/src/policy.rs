@@ -60,3 +60,13 @@ pub struct Document {
     pub assignments: Vec<Assignment>,
 }
 
+impl Document {
+    /// Fully-qualified key = `section.key` (or just `key` when section is empty).
+    fn fq(section: &str, key: &str) -> String {
+        if section.is_empty() {
+            key.to_string()
+        } else {
+            format!("{section}.{key}")
+        }
+    }
+
