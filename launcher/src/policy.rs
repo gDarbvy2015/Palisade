@@ -70,3 +70,13 @@ impl Document {
         }
     }
 
+    /// Return the last scalar value for `section.key`, ignoring appends order
+    /// beyond "last wins".
+    pub fn scalar(&self, section: &str, key: &str) -> Option<&str> {
+        self.assignments
+            .iter()
+            .rev()
+            .find(|a| a.section == section && a.key == key && !a.append)
+            .map(|a| a.value.as_str())
+    }
+
