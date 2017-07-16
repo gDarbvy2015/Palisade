@@ -39,3 +39,13 @@ impl fmt::Display for ParseError {
         )
     }
 }
+
+impl std::error::Error for ParseError {}
+
+/// A single parsed assignment, preserving source order and section.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Assignment {
+    pub section: String,
+    pub key: String,
+    pub value: String,
+    pub append: bool,
