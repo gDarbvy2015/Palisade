@@ -3,3 +3,5 @@
 # Run `git status` with an inherited environment (git needs HOME, PATH, and
 # often credential helpers), but drop a couple of sensitive variables. The
 # arguments are locked down to the exact subcommand.
+
+name = git-status
