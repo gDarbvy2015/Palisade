@@ -80,3 +80,14 @@ impl Document {
             .map(|a| a.value.as_str())
     }
 
+    /// Return all values for a list key (both the initial `=` and any `+=`),
+    /// in source order.
+    pub fn list(&self, section: &str, key: &str) -> Vec<&str> {
+        self.assignments
+            .iter()
+            .filter(|a| a.section == section && a.key == key)
+            .map(|a| a.value.as_str())
+            .collect()
+    }
+
+    /// A stable, sorted map of fully-qualified keys to their joined values,
