@@ -1,1 +1,3 @@
 # examples/network-fetch.policy
+#
+# A network-using command. This intentionally exercises several linter
