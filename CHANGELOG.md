@@ -9,3 +9,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - **Policy format** (`docs/POLICY.md`): a tiny INI-like grammar with `=` scalars
+  and `+=` list append, shared verbatim by both tools.
+- **Rust launcher (`palisade`)**, stdlib only:
+  - `policy` parser with line-accurate error reporting.
