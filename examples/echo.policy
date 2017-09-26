@@ -1,1 +1,3 @@
 # examples/echo.policy
+#
+# A minimal, safe policy: run `echo` with a fixed greeting, a clean
