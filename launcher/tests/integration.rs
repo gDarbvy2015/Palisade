@@ -27,3 +27,13 @@ fn echo_policy(extra_allow: bool) -> String {
             "name = echo-test\n\
              [exec]\n\
              program = sh\n\
+             timeout_ms = 5000\n\
+             [args]\n\
+             fixed = -c\n\
+             fixed += echo hello\n\
+             allow_extra = {extra_allow}\n\
+             [env]\n\
+             mode = clean\n"
+        )
+    }
+}
