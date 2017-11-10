@@ -55,3 +55,22 @@ pub struct Policy {
     pub env_set: Vec<(String, String)>,
     /// Working directory for the child, if specified.
     pub workdir: Option<String>,
+    /// Declared network intent (advisory).
+    pub net: NetMode,
+    /// Wall-clock timeout in milliseconds. 0 means "no timeout".
+    pub timeout_ms: u64,
+}
+
+/// A validation error, distinct from a syntactic [`ParseError`].
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ValidationError {
+    pub message: String,
+}
+
+impl fmt::Display for ValidationError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "policy validation error: {}", self.message)
+    }
+}
+
+impl std::error::Error for ValidationError {}
