@@ -29,3 +29,8 @@
     <path d="M0 40 H880 M0 80 H880 M0 120 H880 M0 160 H880 M0 200 H880 M0 240 H880 M0 280 H880 M0 320 H880 M0 360 H880"/>
     <path d="M40 0 V400 M120 0 V400 M200 0 V400 M280 0 V400 M360 0 V400 M440 0 V400 M520 0 V400 M600 0 V400 M680 0 V400 M760 0 V400 M840 0 V400"/>
   </g>
+
+  <!-- title cartouche -->
+  <rect x="24" y="18" width="360" height="30" rx="4" fill="url(#steel)" filter="url(#soft)"/>
+  <text x="40" y="38" fill="#f4ecd8" font-size="15" letter-spacing="2">PALISADE · GATEHOUSE</text>
+  <text x="856" y="38" text-anchor="end" fill="#7a5a34" font-size="12">userspace launcher, not a kernel sandbox</text>
