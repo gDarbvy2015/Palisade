@@ -29,3 +29,13 @@ func (e *ParseError) Error() string {
 	return fmt.Sprintf("policy parse error on line %d: %s", e.Line, e.Message)
 }
 
+// Assignment is a single parsed key/value, preserving section and source order.
+type Assignment struct {
+	Section string
+	Key     string
+	Value   string
+	Append  bool
+	Line    int
+}
+
+// Document is the ordered set of assignments parsed from a policy file.
