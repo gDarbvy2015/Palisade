@@ -12,3 +12,7 @@ func TestParsesScalarsAndSections(t *testing.T) {
 	}
 	if v, _ := doc.Scalar("exec", "program"); v != "echo" {
 		t.Errorf("program = %q, want echo", v)
+	}
+	if v, _ := doc.Scalar("exec", "timeout_ms"); v != "1000" {
+		t.Errorf("timeout_ms = %q, want 1000", v)
+	}
