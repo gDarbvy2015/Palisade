@@ -1,2 +1,4 @@
 # Rust
 /launcher/target/
+**/*.rs.bk
+Cargo.lock
