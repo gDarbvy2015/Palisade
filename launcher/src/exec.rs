@@ -29,3 +29,18 @@ pub struct Receipt {
     pub args: Vec<String>,
     pub env_mode: String,
     pub effective_env_keys: Vec<String>,
+    pub net_declared: String,
+    pub timeout_ms: u64,
+    pub duration_ms: u128,
+    pub outcome: Outcome,
+}
+
+impl Receipt {
+    /// Serialize the receipt to a compact, dependency-free JSON string.
+    ///
+    /// We hand-roll JSON to keep the crate stdlib-only. All values are simple
+    /// strings, numbers, arrays of strings, and booleans, so escaping is
+    /// limited to the small set handled by [`json_escape`].
+    pub fn to_json(&self) -> String {
+        let (outcome_kind, code) = match &self.outcome {
+            Outcome::Exited(Some(c)) => ("exited", Some(*c)),
