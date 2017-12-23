@@ -6,3 +6,5 @@ rust-version = "1.74"
 description = "Declarative command policy launcher (userspace, not a kernel sandbox)"
 license = "MIT"
 repository = "https://github.com/example/palisade"
+readme = "../README.md"
+
