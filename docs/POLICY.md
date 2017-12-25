@@ -11,3 +11,7 @@ trimmed as surrounding whitespace).
 
 - **Comments** begin with `#` and run to the end of the line. Because the format
   has no quoting layer, a `#` **anywhere** on a line begins a comment. To use a
+  literal `#` in a value, you cannot — choose values without `#`.
+- **Blank lines** (after comment stripping and trimming) are ignored.
+- **Whitespace** around keys, values, and section names is trimmed.
+
