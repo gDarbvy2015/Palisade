@@ -38,3 +38,23 @@ shift at the gate. Read in order the first time; return by number afterwards.
 [12 Limitations & Roadmap](#12--limitations--roadmap)
 
 ---
+
+## 1 · Operator Briefing
+
+Ad-hoc command invocation is where accidents live. A wrapper script leaks the full
+environment to a subprocess. A CI step quietly accepts an extra `--force`. A cron job with
+no timeout hangs a runner. Each is an *implicit* assumption nobody reviewed.
+
+Palisade turns those assumptions into a **standing order** — a small, auditable policy file
+that describes exactly how one command may run: its **executable** (a bare name via `PATH`,
+or an explicit path); its **arguments** (a fixed prefix plus an allow-list of what a caller
+may add); its **environment** (started clean and populated, or inherited and pruned); an
+optional **path constraint** on which binary launches; a declared **network intent**
+(advisory — see [§7](#7--the-threat-boundary)); and a wall-clock **timeout**.
+
+The launcher then resolves the executable, filters the environment, validates the arguments,
+spawns the process, enforces the timeout, and writes a machine-readable **receipt** of what
+actually happened. Lint the file, diff it in review, and run it identically on a laptop, a CI
+runner, and a cron host.
+
+Use Palisade to make command execution **explicit, consistent, and auditable** — in CI
