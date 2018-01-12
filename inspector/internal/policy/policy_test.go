@@ -16,3 +16,8 @@ func TestParsesScalarsAndSections(t *testing.T) {
 	if v, _ := doc.Scalar("exec", "timeout_ms"); v != "1000" {
 		t.Errorf("timeout_ms = %q, want 1000", v)
 	}
+}
+
+func TestAccumulatesLists(t *testing.T) {
+	doc, err := Parse("[args]\nallow = --version\nallow += --help\n")
+	if err != nil {
