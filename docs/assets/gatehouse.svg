@@ -34,3 +34,9 @@
   <rect x="24" y="18" width="360" height="30" rx="4" fill="url(#steel)" filter="url(#soft)"/>
   <text x="40" y="38" fill="#f4ecd8" font-size="15" letter-spacing="2">PALISADE · GATEHOUSE</text>
   <text x="856" y="38" text-anchor="end" fill="#7a5a34" font-size="12">userspace launcher, not a kernel sandbox</text>
+
+  <!-- the fortress wall + gatehouse on the right -->
+  <g filter="url(#soft)">
+    <rect x="600" y="70" width="256" height="300" fill="url(#steel)"/>
+    <!-- crenellations -->
+    <g fill="#26384a">
