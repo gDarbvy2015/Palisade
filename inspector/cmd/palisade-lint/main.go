@@ -66,3 +66,16 @@ func run(args []string) int {
 		return 0
 	case "version", "-V", "--version":
 		fmt.Printf("palisade-lint %s\n", version)
+		return 0
+	case "lint":
+		return cmdLint(args[1:])
+	case "inspect":
+		return cmdInspect(args[1:])
+	default:
+		fmt.Fprintln(os.Stderr, usage)
+		fmt.Fprintf(os.Stderr, "palisade-lint: unknown command %q\n", args[0])
+		return 1
+	}
+}
+
+type flags struct {
