@@ -24,3 +24,16 @@ pub enum ResolveError {
     /// The resolved path is not under any declared `path.root`.
     OutsideRoots {
         resolved: String,
+        roots: Vec<String>,
+    },
+    /// The filesystem could not be queried.
+    Io(String),
+}
+
+impl std::fmt::Display for ResolveError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ResolveError::NotFound(name) => {
+                write!(f, "executable '{name}' not found on PATH")
+            }
+            ResolveError::NotAFile(p) => {
