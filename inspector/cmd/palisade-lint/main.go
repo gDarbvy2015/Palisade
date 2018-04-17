@@ -79,3 +79,17 @@ func run(args []string) int {
 }
 
 type flags struct {
+	jsonOut bool
+	strict  bool
+	files   []string
+}
+
+func parseFlags(args []string) (flags, error) {
+	var f flags
+	for _, a := range args {
+		switch a {
+		case "--json":
+			f.jsonOut = true
+		case "--strict":
+			f.strict = true
+		default:
