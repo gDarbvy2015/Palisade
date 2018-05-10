@@ -7,3 +7,4 @@
 //! resolves the executable, filters the environment, validates arguments,
 //! launches the process, enforces the timeout, and writes a machine-readable
 //! receipt.
+//!
