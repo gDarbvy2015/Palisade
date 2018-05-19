@@ -44,3 +44,19 @@ impl Receipt {
     pub fn to_json(&self) -> String {
         let (outcome_kind, code) = match &self.outcome {
             Outcome::Exited(Some(c)) => ("exited", Some(*c)),
+            Outcome::Exited(None) => ("exited", None),
+            Outcome::TimedOut => ("timed_out", None),
+        };
+
+        let mut s = String::new();
+        s.push('{');
+        push_kv_str(&mut s, "policy_name", &self.policy_name, true);
+        push_kv_str(&mut s, "program", &self.program, false);
+        push_kv_str(&mut s, "resolved_path", &self.resolved_path, false);
+        push_kv_arr(&mut s, "args", &self.args, false);
+        push_kv_str(&mut s, "env_mode", &self.env_mode, false);
+        push_kv_arr(
+            &mut s,
+            "effective_env_keys",
+            &self.effective_env_keys,
+            false,
