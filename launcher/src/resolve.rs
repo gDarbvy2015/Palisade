@@ -37,3 +37,16 @@ impl std::fmt::Display for ResolveError {
                 write!(f, "executable '{name}' not found on PATH")
             }
             ResolveError::NotAFile(p) => {
+                write!(f, "'{p}' does not exist or is not a regular file")
+            }
+            ResolveError::OutsideRoots { resolved, roots } => write!(
+                f,
+                "resolved executable '{resolved}' is not under any allowed path.root: {roots:?}"
+            ),
+            ResolveError::Io(m) => write!(f, "filesystem error during resolution: {m}"),
+        }
+    }
+}
+
+impl std::error::Error for ResolveError {}
+
