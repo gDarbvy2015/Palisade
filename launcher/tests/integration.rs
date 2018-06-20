@@ -47,3 +47,13 @@ fn run(policy_text: &str, extra: &[String]) -> palisade::Receipt {
     let plan = ExecPlan {
         policy: &policy,
         resolved_path: resolved.display().to_string(),
+        args,
+    };
+    execute(&plan).expect("execution succeeds")
+}
+
+#[test]
+fn executes_and_exits_zero() {
+    let receipt = run(&echo_policy(false), &[]);
+    assert_eq!(receipt.outcome, Outcome::Exited(Some(0)));
+    assert!(receipt.duration_ms < 5000);
