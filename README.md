@@ -58,3 +58,23 @@ actually happened. Lint the file, diff it in review, and run it identically on a
 runner, and a cron host.
 
 Use Palisade to make command execution **explicit, consistent, and auditable** — in CI
+wrappers, cron jobs, and operator runbooks. Do **not** use it as a barrier against hostile
+code. For real isolation, station the gatehouse *inside* a container, VM, or OS sandbox.
+
+---
+
+## 2 · Muster — build and install
+
+Two tools garrison the fortress, built from two toolchains — both **standard-library only**,
+no third-party dependencies. **Prerequisites:** Rust (1.74+) and Go (1.24+).
+
+```sh
+# The launcher (Rust) — the tool that executes.
+cd launcher && cargo build --release        # -> launcher/target/release/palisade
+
+# The inspector (Go) — the tool that only reads.
+cd inspector && go build ./cmd/palisade-lint # -> palisade-lint(.exe)
+```
+
+Or muster both at once through the top-level [`Makefile`](Makefile):
+`make build` (compile both), `make test` (cargo test + go test), `make lint-examples`,
