@@ -64,3 +64,14 @@ struct CliError {
 
 fn err(message: impl Into<String>, code: u8) -> CliError {
     CliError {
+        message: message.into(),
+        code: ExitCode::from(code),
+    }
+}
+
+fn run(args: &[String]) -> Result<ExitCode, CliError> {
+    let Some(command) = args.first() else {
+        eprintln!("{USAGE}");
+        return Err(err("no command given", 1));
+    };
+
