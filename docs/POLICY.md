@@ -15,3 +15,7 @@ trimmed as surrounding whitespace).
 - **Blank lines** (after comment stripping and trimming) are ignored.
 - **Whitespace** around keys, values, and section names is trimmed.
 
+## 2. Grammar
+
+```
+line        := comment | blank | section | assignment
