@@ -42,3 +42,14 @@ OPTIONS:
                        If omitted, the receipt is printed to stderr.
     --                 Everything after this is passed as extra arguments to
                        the child, subject to the args allow-list.
+
+NOTE:
+    This is a userspace launcher, not a kernel sandbox. See the README.";
+
+fn main() -> ExitCode {
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    match run(&args) {
+        Ok(code) => code,
+        Err(e) => {
+            eprintln!("palisade: {}", e.message);
+            e.code
