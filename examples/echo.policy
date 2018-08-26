@@ -2,3 +2,5 @@
 #
 # A minimal, safe policy: run `echo` with a fixed greeting, a clean
 # environment, no declared network use, and a 2-second timeout.
+
+name = echo-demo
