@@ -91,3 +91,13 @@ impl Document {
     }
 
     /// A stable, sorted map of fully-qualified keys to their joined values,
+    /// primarily for diagnostics and receipts.
+    pub fn summary(&self) -> BTreeMap<String, Vec<String>> {
+        let mut map: BTreeMap<String, Vec<String>> = BTreeMap::new();
+        for a in &self.assignments {
+            map.entry(Self::fq(&a.section, &a.key))
+                .or_default()
+                .push(a.value.clone());
+        }
+        map
+    }
