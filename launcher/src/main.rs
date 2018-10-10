@@ -53,3 +53,14 @@ fn main() -> ExitCode {
         Err(e) => {
             eprintln!("palisade: {}", e.message);
             e.code
+        }
+    }
+}
+
+struct CliError {
+    message: String,
+    code: ExitCode,
+}
+
+fn err(message: impl Into<String>, code: u8) -> CliError {
+    CliError {
