@@ -12,3 +12,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   and `+=` list append, shared verbatim by both tools.
 - **Rust launcher (`palisade`)**, stdlib only:
   - `policy` parser with line-accurate error reporting.
+  - `model` typed policy with validation (required program, timeout, env mode,
+    env.set KEY=VALUE, net mode, argument allow-list).
