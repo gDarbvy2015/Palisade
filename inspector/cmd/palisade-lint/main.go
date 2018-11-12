@@ -120,3 +120,17 @@ func cmdLint(args []string) int {
 	}
 
 	var jsonReports []fileReport
+	exit := 0
+
+	for _, file := range f.files {
+		text, err := os.ReadFile(file)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "palisade-lint: cannot read %q: %v\n", file, err)
+			exit = 3
+			continue
+		}
+		report, err := lint.Lint(string(text))
+		if err != nil {
+			// Parse errors are fatal for this file.
+			if f.jsonOut {
+				jsonReports = append(jsonReports, fileReport{
