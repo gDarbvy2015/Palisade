@@ -74,3 +74,22 @@ impl fmt::Display for ValidationError {
 }
 
 impl std::error::Error for ValidationError {}
+
+/// Umbrella error for loading a policy from text.
+#[derive(Debug)]
+pub enum LoadError {
+    Parse(ParseError),
+    Validate(ValidationError),
+}
+
+impl fmt::Display for LoadError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            LoadError::Parse(e) => write!(f, "{e}"),
+            LoadError::Validate(e) => write!(f, "{e}"),
+        }
+    }
+}
+
+impl std::error::Error for LoadError {}
+
