@@ -8,3 +8,5 @@
 //! launches the process, enforces the timeout, and writes a machine-readable
 //! receipt.
 //!
+//! ## What this is NOT
+//!
