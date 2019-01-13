@@ -98,3 +98,23 @@ with the keys to the gate. Both read the same normative grammar in
 [`docs/POLICY.md`](docs/POLICY.md).
 
 ---
+
+## 4 · Reading standing orders — policy anatomy
+
+A policy is a tiny INI-like text file. `=` sets a **scalar** (last assignment wins); `+=`
+**appends** to a **list** (order preserved). There is no quoting, escaping, or line
+continuation — deliberately, so the format is trivial to parse, diff, and audit. A `#`
+anywhere on a line begins a comment.
+
+Here is a complete standing order, annotated post by post:
+
+```ini
+name = git-status              # human-readable label (default: "unnamed")
+
+[exec]
+program = git                  # REQUIRED. Bare name (PATH-resolved) or a path.
+timeout_ms = 10000             # wall-clock ms. 0/absent = no timeout.
+# workdir = /srv/repo          # optional working directory
+
+[args]
+fixed = status                 # always prepended, in order
