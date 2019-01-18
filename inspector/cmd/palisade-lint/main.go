@@ -93,3 +93,17 @@ func parseFlags(args []string) (flags, error) {
 		case "--strict":
 			f.strict = true
 		default:
+			if strings.HasPrefix(a, "-") {
+				return f, fmt.Errorf("unknown option %q", a)
+			}
+			f.files = append(f.files, a)
+		}
+	}
+	return f, nil
+}
+
+// fileReport pairs a filename with its lint report for JSON output.
+type fileReport struct {
+	File   string       `json:"file"`
+	Report *lint.Report `json:"report"`
+}
