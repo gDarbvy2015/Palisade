@@ -19,3 +19,8 @@ trimmed as surrounding whitespace).
 
 ```
 line        := comment | blank | section | assignment
+section     := '[' ident ']'
+assignment  := ident ('=' | '+=') value
+value       := any text (trimmed; may be empty)
+ident       := [A-Za-z0-9_.-]+
+```
