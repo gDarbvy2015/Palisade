@@ -8,3 +8,4 @@ license = "MIT"
 repository = "https://github.com/example/palisade"
 readme = "../README.md"
 
+[[bin]]
