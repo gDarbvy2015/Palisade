@@ -134,3 +134,16 @@ func cmdLint(args []string) int {
 			// Parse errors are fatal for this file.
 			if f.jsonOut {
 				jsonReports = append(jsonReports, fileReport{
+					File: file,
+					Report: &lint.Report{Diagnostics: []lint.Diagnostic{
+						{Severity: lint.Error, Code: "P000", Message: err.Error()},
+					}},
+				})
+			} else {
+				fmt.Printf("%s\n  error P000: %v\n", file, err)
+			}
+			exit = maxInt(exit, 2)
+			continue
+		}
+
+		if f.jsonOut {
