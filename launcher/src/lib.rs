@@ -10,3 +10,4 @@
 //!
 //! ## What this is NOT
 //!
+//! Palisade does **not** provide OS kernel sandboxing. It does not use
