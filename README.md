@@ -78,3 +78,23 @@ cd inspector && go build ./cmd/palisade-lint # -> palisade-lint(.exe)
 
 Or muster both at once through the top-level [`Makefile`](Makefile):
 `make build` (compile both), `make test` (cargo test + go test), `make lint-examples`,
+`make fmt`, `make vet`.
+
+---
+
+## 3 · The two wardens
+
+One fortress format; two independently-written tools that must agree on it. The grammar is
+implemented **twice** — once in Rust, once in Go — and cross-checked by each tool's tests.
+
+| Warden | Language | Standing duty | Executes? |
+|--------|----------|---------------|:---------:|
+| [`palisade`](launcher/) | Rust (stdlib) | Loads + validates a policy, resolves the program, **runs** it, writes a receipt. | **Yes** |
+| [`palisade-lint`](inspector/) | Go (stdlib) | **Inspects and lints** the same format. Reads files, reports diagnostics. | **Never** |
+
+The division is deliberate. The **inspector never launches a process** — run it safely
+against an untrusted policy to learn what it *would* do. The **launcher** is the only tool
+with the keys to the gate. Both read the same normative grammar in
+[`docs/POLICY.md`](docs/POLICY.md).
+
+---
