@@ -11,3 +11,6 @@ ifeq ($(OS),Windows_NT)
 LINT_BIN := $(INSPECTOR_DIR)/palisade-lint.exe
 else
 LINT_BIN := $(INSPECTOR_DIR)/palisade-lint
+endif
+
+.PHONY: all build build-rust build-go test test-rust test-go fmt vet \
