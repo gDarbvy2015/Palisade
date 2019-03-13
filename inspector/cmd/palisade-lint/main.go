@@ -107,3 +107,16 @@ type fileReport struct {
 	File   string       `json:"file"`
 	Report *lint.Report `json:"report"`
 }
+
+func cmdLint(args []string) int {
+	f, err := parseFlags(args)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "palisade-lint: %v\n", err)
+		return 1
+	}
+	if len(f.files) == 0 {
+		fmt.Fprintln(os.Stderr, "palisade-lint: lint requires at least one policy file")
+		return 1
+	}
+
+	var jsonReports []fileReport
