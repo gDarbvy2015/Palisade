@@ -75,3 +75,14 @@ fn run(args: &[String]) -> Result<ExitCode, CliError> {
         return Err(err("no command given", 1));
     };
 
+    match command.as_str() {
+        "help" | "-h" | "--help" => {
+            println!("{USAGE}");
+            Ok(ExitCode::SUCCESS)
+        }
+        "version" | "-V" | "--version" => {
+            println!("palisade {VERSION}");
+            Ok(ExitCode::SUCCESS)
+        }
+        "check" => cmd_check(&args[1..]),
+        "run" => cmd_run(&args[1..]),
