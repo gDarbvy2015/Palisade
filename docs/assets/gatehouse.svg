@@ -40,3 +40,8 @@
     <rect x="600" y="70" width="256" height="300" fill="url(#steel)"/>
     <!-- crenellations -->
     <g fill="#26384a">
+      <rect x="600" y="58" width="26" height="18"/><rect x="652" y="58" width="26" height="18"/>
+      <rect x="704" y="58" width="26" height="18"/><rect x="756" y="58" width="26" height="18"/>
+      <rect x="808" y="58" width="26" height="18"/>
+    </g>
+    <!-- stone courses -->
