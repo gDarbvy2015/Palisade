@@ -4,3 +4,4 @@
 # environment, no declared network use, and a 2-second timeout.
 
 name = echo-demo
+
