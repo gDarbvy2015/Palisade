@@ -43,3 +43,12 @@ func TestBadTimeoutIsError(t *testing.T) {
 }
 
 func TestNoTimeoutWarns(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\n")
+	if !hasCode(r, "P100") {
+		t.Errorf("expected P100 warning, got %+v", r.Diagnostics)
+	}
+}
+
+func TestInheritEnvWarns(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\n[env]\nmode = inherit\n")
+	if !hasCode(r, "P102") {
