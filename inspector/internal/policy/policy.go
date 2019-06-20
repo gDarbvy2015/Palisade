@@ -39,3 +39,14 @@ type Assignment struct {
 }
 
 // Document is the ordered set of assignments parsed from a policy file.
+type Document struct {
+	Assignments []Assignment
+}
+
+// Scalar returns the last non-append value for section.key, if any.
+func (d *Document) Scalar(section, key string) (string, bool) {
+	for i := len(d.Assignments) - 1; i >= 0; i-- {
+		a := d.Assignments[i]
+		if a.Section == section && a.Key == key && !a.Append {
+			return a.Value, true
+		}
