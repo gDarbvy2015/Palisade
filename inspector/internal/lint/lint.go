@@ -41,3 +41,18 @@ func (s Severity) String() string {
 // MarshalJSON emits the severity as its string form for readable JSON.
 func (s Severity) MarshalJSON() ([]byte, error) {
 	return []byte(`"` + s.String() + `"`), nil
+}
+
+// Diagnostic is a single finding.
+type Diagnostic struct {
+	Severity Severity `json:"severity"`
+	Code     string   `json:"code"`
+	Message  string   `json:"message"`
+	Line     int      `json:"line,omitempty"`
+}
+
+// Report is the full set of diagnostics for a policy.
+type Report struct {
+	Diagnostics []Diagnostic `json:"diagnostics"`
+}
+
