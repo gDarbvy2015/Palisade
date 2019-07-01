@@ -26,3 +26,8 @@
 
   <rect width="880" height="420" fill="url(#rcParch)"/>
 
+  <!-- header rail -->
+  <rect x="0" y="0" width="880" height="46" fill="url(#rcSteel)"/>
+  <circle cx="26" cy="23" r="7" fill="#d98a4e"/><circle cx="48" cy="23" r="7" fill="#e6d8b8"/><circle cx="70" cy="23" r="7" fill="#8fd6a3"/>
+  <text x="100" y="28" fill="#f4ecd8" font-size="14" letter-spacing="1">palisade run --policy git-status.policy --receipt receipt.json</text>
+
