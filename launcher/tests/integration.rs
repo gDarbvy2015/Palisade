@@ -57,3 +57,12 @@ fn executes_and_exits_zero() {
     let receipt = run(&echo_policy(false), &[]);
     assert_eq!(receipt.outcome, Outcome::Exited(Some(0)));
     assert!(receipt.duration_ms < 5000);
+    assert_eq!(receipt.net_declared, "none");
+}
+
+#[test]
+fn timeout_kills_long_child() {
+    let policy_text = if cfg!(windows) {
+        // ping -n 5 sleeps ~4s; timeout at 300ms forces a kill.
+        "name = slow\n\
+         [exec]\n\
