@@ -101,3 +101,13 @@ impl Document {
         }
         map
     }
+}
+
+/// Parse the policy text into a [`Document`].
+pub fn parse(input: &str) -> Result<Document, ParseError> {
+    let mut doc = Document::default();
+    let mut section = String::new();
+
+    for (idx, raw) in input.lines().enumerate() {
+        let line_no = idx + 1;
+        let line = strip_comment(raw).trim();
