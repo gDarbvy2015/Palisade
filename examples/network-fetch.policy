@@ -3,3 +3,5 @@
 # A network-using command. This intentionally exercises several linter
 # advisories so `palisade-lint` output is interesting:
 #   - net.mode = allow  -> P200 (advisory only)
+#   - env.mode = inherit -> P102 (prefer clean)
+#   - args.allow_extra = true -> P103 (arbitrary args)
