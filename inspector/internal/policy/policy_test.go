@@ -26,3 +26,7 @@ func TestAccumulatesLists(t *testing.T) {
 	got := doc.List("args", "allow")
 	want := []string{"--version", "--help"}
 	if len(got) != len(want) {
+		t.Fatalf("list len %d, want %d (%v)", len(got), len(want), got)
+	}
+	for i := range want {
+		if got[i] != want[i] {
