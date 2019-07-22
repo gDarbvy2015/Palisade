@@ -118,3 +118,23 @@ timeout_ms = 10000             # wall-clock ms. 0/absent = no timeout.
 
 [args]
 fixed = status                 # always prepended, in order
+fixed += --short               # (+= preserves order)
+allow_extra = false            # false (default): only allow-listed caller args
+# allow = --porcelain          # allow-list of extra caller args
+
+[env]
+mode = inherit                 # "clean" (default) or "inherit"
+remove = AWS_SECRET_ACCESS_KEY # (inherit) prune from parent env
+remove += GITHUB_TOKEN
+# pass = HOME                  # (clean) copy from parent if present
+# set = LANG=C.UTF-8           # KEY=VALUE applied LAST, overriding above
+
+[path]
+# root = /usr/bin              # if set, resolved binary MUST live under a root
+
+[net]
+mode = none                    # "none" (default) or "allow". ADVISORY ONLY — see §7.
+```
+
+### The section register
+
