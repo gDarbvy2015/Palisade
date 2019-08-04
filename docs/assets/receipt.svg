@@ -20,3 +20,9 @@
       <stop offset="1" stop-color="#7d3a1c"/>
     </radialGradient>
     <filter id="rcSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.2" flood-color="#1a2733" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="880" height="420" fill="url(#rcParch)"/>
+
