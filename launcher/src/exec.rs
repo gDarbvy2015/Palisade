@@ -60,3 +60,18 @@ impl Receipt {
             "effective_env_keys",
             &self.effective_env_keys,
             false,
+        );
+        push_kv_str(&mut s, "net_declared", &self.net_declared, false);
+        push_kv_num(&mut s, "timeout_ms", self.timeout_ms as i128, false);
+        push_kv_num(&mut s, "duration_ms", self.duration_ms as i128, false);
+        push_kv_str(&mut s, "outcome", outcome_kind, false);
+        match code {
+            Some(c) => push_kv_num(&mut s, "exit_code", c as i128, false),
+            None => {
+                s.push(',');
+                s.push_str("\"exit_code\":null");
+            }
+        }
+        s.push('}');
+        s
+    }
