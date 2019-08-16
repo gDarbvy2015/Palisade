@@ -14,3 +14,6 @@ LINT_BIN := $(INSPECTOR_DIR)/palisade-lint
 endif
 
 .PHONY: all build build-rust build-go test test-rust test-go fmt vet \
+        lint-examples clean help
+
+all: build test
