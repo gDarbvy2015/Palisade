@@ -56,3 +56,17 @@ type Report struct {
 	Diagnostics []Diagnostic `json:"diagnostics"`
 }
 
+// HasErrors reports whether any diagnostic is an error.
+func (r *Report) HasErrors() bool {
+	for _, d := range r.Diagnostics {
+		if d.Severity == Error {
+			return true
+		}
+	}
+	return false
+}
+
+// Counts returns the number of errors, warnings, and infos.
+func (r *Report) Counts() (errors, warnings, infos int) {
+	for _, d := range r.Diagnostics {
+		switch d.Severity {
