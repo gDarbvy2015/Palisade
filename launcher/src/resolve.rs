@@ -50,3 +50,16 @@ impl std::fmt::Display for ResolveError {
 
 impl std::error::Error for ResolveError {}
 
+fn has_separator(s: &str) -> bool {
+    s.contains('/') || (cfg!(windows) && s.contains('\\'))
+}
+
+/// Return the PATHEXT-derived list of executable extensions on Windows,
+/// or a single empty extension elsewhere.
+fn path_extensions() -> Vec<String> {
+    if cfg!(windows) {
+        match std::env::var("PATHEXT") {
+            Ok(v) => {
+                let mut exts: Vec<String> = v
+                    .split(';')
+                    .filter(|s| !s.is_empty())
