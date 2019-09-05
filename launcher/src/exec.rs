@@ -75,3 +75,19 @@ impl Receipt {
         s.push('}');
         s
     }
+}
+
+fn push_comma(s: &mut String, first: bool) {
+    if !first {
+        s.push(',');
+    }
+}
+
+fn push_kv_str(s: &mut String, key: &str, val: &str, first: bool) {
+    push_comma(s, first);
+    s.push('"');
+    s.push_str(&json_escape(key));
+    s.push_str("\":\"");
+    s.push_str(&json_escape(val));
+    s.push('"');
+}
