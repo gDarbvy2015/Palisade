@@ -34,3 +34,12 @@ func TestValidMinimalPolicyHasNoErrors(t *testing.T) {
 		t.Errorf("expected no errors, got %+v", r.Diagnostics)
 	}
 }
+
+func TestBadTimeoutIsError(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = abc\n")
+	if !hasCode(r, "P002") {
+		t.Errorf("expected P002, got %+v", r.Diagnostics)
+	}
+}
+
+func TestNoTimeoutWarns(t *testing.T) {
