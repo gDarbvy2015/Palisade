@@ -21,3 +21,8 @@ func TestParsesScalarsAndSections(t *testing.T) {
 func TestAccumulatesLists(t *testing.T) {
 	doc, err := Parse("[args]\nallow = --version\nallow += --help\n")
 	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	got := doc.List("args", "allow")
+	want := []string{"--version", "--help"}
+	if len(got) != len(want) {
