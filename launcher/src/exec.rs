@@ -91,3 +91,18 @@ fn push_kv_str(s: &mut String, key: &str, val: &str, first: bool) {
     s.push_str(&json_escape(val));
     s.push('"');
 }
+
+fn push_kv_num(s: &mut String, key: &str, val: i128, first: bool) {
+    push_comma(s, first);
+    s.push('"');
+    s.push_str(&json_escape(key));
+    s.push_str("\":");
+    s.push_str(&val.to_string());
+}
+
+fn push_kv_arr(s: &mut String, key: &str, vals: &[String], first: bool) {
+    push_comma(s, first);
+    s.push('"');
+    s.push_str(&json_escape(key));
+    s.push_str("\":[");
+    for (i, v) in vals.iter().enumerate() {
