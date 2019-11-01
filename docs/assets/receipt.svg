@@ -31,3 +31,9 @@
   <circle cx="26" cy="23" r="7" fill="#d98a4e"/><circle cx="48" cy="23" r="7" fill="#e6d8b8"/><circle cx="70" cy="23" r="7" fill="#8fd6a3"/>
   <text x="100" y="28" fill="#f4ecd8" font-size="14" letter-spacing="1">palisade run --policy git-status.policy --receipt receipt.json</text>
 
+  <!-- terminal body -->
+  <rect x="28" y="70" width="560" height="322" rx="8" fill="#16222e" filter="url(#rcSoft)"/>
+  <g font-size="13.5">
+    <text x="48" y="100" fill="#8fd6a3">$ palisade run --policy examples/git-status.policy \</text>
+    <text x="66" y="120" fill="#8fd6a3">--receipt receipt.json</text>
+    <text x="48" y="146" fill="#7a97ad">wrote receipt.json</text>
