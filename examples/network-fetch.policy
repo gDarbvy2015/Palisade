@@ -1,3 +1,5 @@
 # examples/network-fetch.policy
 #
 # A network-using command. This intentionally exercises several linter
+# advisories so `palisade-lint` output is interesting:
+#   - net.mode = allow  -> P200 (advisory only)
