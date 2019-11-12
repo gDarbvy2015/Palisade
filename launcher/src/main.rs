@@ -86,3 +86,14 @@ fn run(args: &[String]) -> Result<ExitCode, CliError> {
         }
         "check" => cmd_check(&args[1..]),
         "run" => cmd_run(&args[1..]),
+        other => {
+            eprintln!("{USAGE}");
+            Err(err(format!("unknown command '{other}'"), 1))
+        }
+    }
+}
+
+/// Parsed options common to run/check.
+struct Opts {
+    policy_path: String,
+    receipt_path: Option<String>,
