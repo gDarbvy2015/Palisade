@@ -97,3 +97,14 @@ fn run(args: &[String]) -> Result<ExitCode, CliError> {
 struct Opts {
     policy_path: String,
     receipt_path: Option<String>,
+    extra: Vec<String>,
+}
+
+fn parse_opts(args: &[String]) -> Result<Opts, CliError> {
+    let mut policy_path: Option<String> = None;
+    let mut receipt_path: Option<String> = None;
+    let mut extra: Vec<String> = Vec::new();
+    let mut i = 0;
+    while i < args.len() {
+        match args[i].as_str() {
+            "--policy" => {
