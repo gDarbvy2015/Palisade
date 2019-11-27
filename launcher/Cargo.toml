@@ -10,3 +10,4 @@ readme = "../README.md"
 
 [[bin]]
 name = "palisade"
+path = "src/main.rs"
