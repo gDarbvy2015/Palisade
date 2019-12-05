@@ -108,3 +108,14 @@ fn parse_opts(args: &[String]) -> Result<Opts, CliError> {
     while i < args.len() {
         match args[i].as_str() {
             "--policy" => {
+                i += 1;
+                policy_path = Some(
+                    args.get(i)
+                        .ok_or_else(|| err("--policy requires a value", 1))?
+                        .clone(),
+                );
+            }
+            "--receipt" => {
+                i += 1;
+                receipt_path = Some(
+                    args.get(i)
