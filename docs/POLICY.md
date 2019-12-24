@@ -32,3 +32,8 @@ ident       := [A-Za-z0-9_.-]+
 
 There is no quoting, escaping, or line continuation. This is deliberate: the
 format is trivial to parse, diff, and audit.
+
+## 3. Sections and keys
+
+| Section  | Key           | Kind   | Meaning                                                                 |
+|----------|---------------|--------|-------------------------------------------------------------------------|
