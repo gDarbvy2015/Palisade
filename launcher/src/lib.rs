@@ -13,3 +13,4 @@
 //! Palisade does **not** provide OS kernel sandboxing. It does not use
 //! seccomp, namespaces, cgroups, AppContainer, job objects, or any
 //! kernel-enforced isolation. A launched program that is determined to break
+//! out (spawning children, opening sockets despite `net.mode = none`, reading
