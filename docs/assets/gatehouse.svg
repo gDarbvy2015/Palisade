@@ -50,3 +50,8 @@
       <path d="M640 70 V110 M700 110 V150 M660 150 V190 M720 190 V230 M660 230 V270"/>
     </g>
     <!-- gate arch -->
+    <path d="M636 370 V210 a52 52 0 0 1 104 0 V370 Z" fill="#141f2a"/>
+  </g>
+
+  <!-- portcullis (copper) that rises when all checks pass -->
+  <g filter="url(#soft)">
