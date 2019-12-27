@@ -9,3 +9,4 @@ repository = "https://github.com/example/palisade"
 readme = "../README.md"
 
 [[bin]]
+name = "palisade"
