@@ -147,3 +147,17 @@ func cmdLint(args []string) int {
 		}
 
 		if f.jsonOut {
+			jsonReports = append(jsonReports, fileReport{File: file, Report: report})
+		} else {
+			printTextReport(file, report)
+		}
+
+		errs, warns, _ := report.Counts()
+		if errs > 0 {
+			exit = maxInt(exit, 2)
+		}
+		if f.strict && warns > 0 {
+			exit = maxInt(exit, 2)
+		}
+	}
+
