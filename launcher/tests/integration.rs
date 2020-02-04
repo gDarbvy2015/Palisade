@@ -66,3 +66,13 @@ fn timeout_kills_long_child() {
         // ping -n 5 sleeps ~4s; timeout at 300ms forces a kill.
         "name = slow\n\
          [exec]\n\
+         program = cmd\n\
+         timeout_ms = 300\n\
+         [args]\n\
+         fixed = /C\n\
+         fixed += ping -n 5 127.0.0.1 > NUL\n\
+         [env]\n\
+         mode = inherit\n"
+            .to_string()
+    } else {
+        "name = slow\n\
