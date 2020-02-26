@@ -7,3 +7,5 @@ Cargo.lock
 /inspector/palisade-lint
 /inspector/palisade-lint.exe
 *.test
+*.out
+
