@@ -45,3 +45,8 @@
       <rect x="808" y="58" width="26" height="18"/>
     </g>
     <!-- stone courses -->
+    <g stroke="#1c2b3a" stroke-width="1" opacity="0.5">
+      <path d="M600 110 H856 M600 150 H856 M600 190 H856 M600 230 H856 M600 270 H856 M600 310 H856 M600 350 H856"/>
+      <path d="M640 70 V110 M700 110 V150 M660 150 V190 M720 190 V230 M660 230 V270"/>
+    </g>
+    <!-- gate arch -->
