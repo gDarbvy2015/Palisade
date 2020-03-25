@@ -188,3 +188,17 @@ func printTextReport(file string, r *lint.Report) {
 		}
 	}
 	fmt.Printf("  summary: %d error(s), %d warning(s), %d info\n", errs, warns, infos)
+}
+
+// inspectView is the structured summary emitted by `inspect`.
+type inspectView struct {
+	File       string            `json:"file"`
+	Name       string            `json:"name"`
+	Program    string            `json:"program"`
+	TimeoutMs  string            `json:"timeout_ms"`
+	Workdir    string            `json:"workdir,omitempty"`
+	EnvMode    string            `json:"env_mode"`
+	EnvPass    []string          `json:"env_pass,omitempty"`
+	EnvRemove  []string          `json:"env_remove,omitempty"`
+	EnvSet     []string          `json:"env_set,omitempty"`
+	FixedArgs  []string          `json:"fixed_args,omitempty"`
