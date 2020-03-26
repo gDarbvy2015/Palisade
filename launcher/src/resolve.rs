@@ -63,3 +63,16 @@ fn path_extensions() -> Vec<String> {
                 let mut exts: Vec<String> = v
                     .split(';')
                     .filter(|s| !s.is_empty())
+                    .map(|s| s.to_ascii_lowercase())
+                    .collect();
+                if exts.is_empty() {
+                    exts.push(".exe".to_string());
+                }
+                // Also allow an exact match with no extension.
+                exts.push(String::new());
+                exts
+            }
+            Err(_) => vec![
+                ".com".to_string(),
+                ".exe".to_string(),
+                ".bat".to_string(),
