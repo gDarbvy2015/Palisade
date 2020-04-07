@@ -37,3 +37,8 @@
     <text x="48" y="100" fill="#8fd6a3">$ palisade run --policy examples/git-status.policy \</text>
     <text x="66" y="120" fill="#8fd6a3">--receipt receipt.json</text>
     <text x="48" y="146" fill="#7a97ad">wrote receipt.json</text>
+
+    <!-- JSON receipt, revealed key by key -->
+    <g fill="#e8dabb">
+      <text x="48"  y="176" opacity="0"><tspan fill="#d98a4e">{</tspan>
+        <animate attributeName="opacity" values="0;1" begin="0.2s" dur="0.3s" fill="freeze"/></text>
