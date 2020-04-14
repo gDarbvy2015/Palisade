@@ -42,3 +42,9 @@
     <g fill="#e8dabb">
       <text x="48"  y="176" opacity="0"><tspan fill="#d98a4e">{</tspan>
         <animate attributeName="opacity" values="0;1" begin="0.2s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="196" opacity="0">"policy_name": <tspan fill="#8fd6a3">"git-status"</tspan>,
+        <animate attributeName="opacity" values="0;1" begin="0.6s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="216" opacity="0">"resolved_path": <tspan fill="#8fd6a3">"/usr/bin/git"</tspan>,
+        <animate attributeName="opacity" values="0;1" begin="1.0s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="236" opacity="0">"args": <tspan fill="#c8dcea">["status","--short"]</tspan>,
+        <animate attributeName="opacity" values="0;1" begin="1.4s" dur="0.3s" fill="freeze"/></text>
