@@ -89,3 +89,16 @@ fn is_executable_file(path: &Path) -> bool {
     match std::fs::metadata(path) {
         Ok(md) => md.is_file(),
         Err(_) => false,
+    }
+}
+
+/// Resolve a bare command name against PATH (and PATHEXT on Windows).
+fn resolve_on_path(name: &str) -> Option<PathBuf> {
+    let path_var = std::env::var_os("PATH")?;
+    let exts = path_extensions();
+    for dir in std::env::split_paths(&path_var) {
+        if dir.as_os_str().is_empty() {
+            continue;
+        }
+        for ext in &exts {
+            let mut candidate = dir.join(name);
