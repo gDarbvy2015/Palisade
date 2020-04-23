@@ -30,3 +30,8 @@ jobs:
       - name: Test
         run: cargo test
 
+  go:
+    name: Go inspector (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
