@@ -161,3 +161,17 @@ func cmdLint(args []string) int {
 		}
 	}
 
+	if f.jsonOut {
+		enc := json.NewEncoder(os.Stdout)
+		enc.SetIndent("", "  ")
+		if err := enc.Encode(jsonReports); err != nil {
+			fmt.Fprintf(os.Stderr, "palisade-lint: json encode error: %v\n", err)
+			return 3
+		}
+	}
+
+	return exit
+}
+
+func printTextReport(file string, r *lint.Report) {
+	errs, warns, infos := r.Counts()
