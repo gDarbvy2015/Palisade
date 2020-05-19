@@ -5,3 +5,4 @@
 #   - net.mode = allow  -> P200 (advisory only)
 #   - env.mode = inherit -> P102 (prefer clean)
 #   - args.allow_extra = true -> P103 (arbitrary args)
+#
