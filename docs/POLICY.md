@@ -24,3 +24,7 @@ assignment  := ident ('=' | '+=') value
 value       := any text (trimmed; may be empty)
 ident       := [A-Za-z0-9_.-]+
 ```
+
+- `=` sets a **scalar**. If a key is assigned multiple times with `=`, the last
+  assignment wins.
+- `+=` **appends** to a list. The order of `=`/`+=` occurrences is preserved for
