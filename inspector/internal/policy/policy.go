@@ -50,3 +50,13 @@ func (d *Document) Scalar(section, key string) (string, bool) {
 		if a.Section == section && a.Key == key && !a.Append {
 			return a.Value, true
 		}
+	}
+	return "", false
+}
+
+// List returns all values for section.key in source order.
+func (d *Document) List(section, key string) []string {
+	var out []string
+	for _, a := range d.Assignments {
+		if a.Section == section && a.Key == key {
+			out = append(out, a.Value)
