@@ -76,3 +76,16 @@ fn path_extensions() -> Vec<String> {
                 ".com".to_string(),
                 ".exe".to_string(),
                 ".bat".to_string(),
+                ".cmd".to_string(),
+                String::new(),
+            ],
+        }
+    } else {
+        vec![String::new()]
+    }
+}
+
+fn is_executable_file(path: &Path) -> bool {
+    match std::fs::metadata(path) {
+        Ok(md) => md.is_file(),
+        Err(_) => false,
