@@ -5,3 +5,5 @@
 # arguments are locked down to the exact subcommand.
 
 name = git-status
+
+[exec]
