@@ -28,3 +28,7 @@ ident       := [A-Za-z0-9_.-]+
 - `=` sets a **scalar**. If a key is assigned multiple times with `=`, the last
   assignment wins.
 - `+=` **appends** to a list. The order of `=`/`+=` occurrences is preserved for
+  list-valued keys.
+
+There is no quoting, escaping, or line continuation. This is deliberate: the
+format is trivial to parse, diff, and audit.
