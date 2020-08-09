@@ -175,3 +175,16 @@ func cmdLint(args []string) int {
 
 func printTextReport(file string, r *lint.Report) {
 	errs, warns, infos := r.Counts()
+	fmt.Printf("%s\n", file)
+	if len(r.Diagnostics) == 0 {
+		fmt.Println("  ok (no diagnostics)")
+		return
+	}
+	for _, d := range r.Diagnostics {
+		if d.Line > 0 {
+			fmt.Printf("  %s %s (line %d): %s\n", d.Severity, d.Code, d.Line, d.Message)
+		} else {
+			fmt.Printf("  %s %s: %s\n", d.Severity, d.Code, d.Message)
+		}
+	}
+	fmt.Printf("  summary: %d error(s), %d warning(s), %d info\n", errs, warns, infos)
