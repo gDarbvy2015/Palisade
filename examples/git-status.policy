@@ -7,3 +7,4 @@
 name = git-status
 
 [exec]
+program = git
