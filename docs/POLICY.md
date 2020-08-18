@@ -37,3 +37,7 @@ format is trivial to parse, diff, and audit.
 
 | Section  | Key           | Kind   | Meaning                                                                 |
 |----------|---------------|--------|-------------------------------------------------------------------------|
+| (root)   | `name`        | scalar | Human-readable policy name. Default: `unnamed`.                         |
+| `exec`   | `program`     | scalar | **Required.** Bare name (PATH-resolved) or a path to the executable.   |
+| `exec`   | `timeout_ms`  | scalar | Wall-clock timeout in milliseconds. `0` or absent = no timeout.        |
+| `exec`   | `workdir`     | scalar | Working directory for the child process.                               |
