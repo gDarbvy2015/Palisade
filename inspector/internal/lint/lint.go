@@ -99,3 +99,18 @@ var knownKeys = map[string]map[string]bool{
 	},
 	"env": {
 		"mode":   true,
+		"pass":   true,
+		"remove": true,
+		"set":    true,
+	},
+	"path": {
+		"root": true,
+	},
+	"net": {
+		"mode": true,
+	},
+}
+
+// Lint runs all checks against parsed policy text and returns a Report.
+func Lint(input string) (*Report, error) {
+	doc, err := policy.Parse(input)
