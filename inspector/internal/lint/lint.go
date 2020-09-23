@@ -70,3 +70,18 @@ func (r *Report) HasErrors() bool {
 func (r *Report) Counts() (errors, warnings, infos int) {
 	for _, d := range r.Diagnostics {
 		switch d.Severity {
+		case Error:
+			errors++
+		case Warning:
+			warnings++
+		case Info:
+			infos++
+		}
+	}
+	return
+}
+
+// knownSections and their known keys. Unknown sections/keys generate warnings,
+// which catches typos like [exce] or "programm".
+var knownKeys = map[string]map[string]bool{
+	"": {
