@@ -93,3 +93,22 @@ impl fmt::Display for LoadError {
 
 impl std::error::Error for LoadError {}
 
+impl From<ParseError> for LoadError {
+    fn from(e: ParseError) -> Self {
+        LoadError::Parse(e)
+    }
+}
+
+impl From<ValidationError> for LoadError {
+    fn from(e: ValidationError) -> Self {
+        LoadError::Validate(e)
+    }
+}
+
+fn parse_bool(s: &str) -> Option<bool> {
+    match s.trim().to_ascii_lowercase().as_str() {
+        "true" | "yes" | "1" | "on" => Some(true),
+        "false" | "no" | "0" | "off" => Some(false),
+        _ => None,
+    }
+}
