@@ -202,3 +202,17 @@ type inspectView struct {
 	EnvRemove  []string          `json:"env_remove,omitempty"`
 	EnvSet     []string          `json:"env_set,omitempty"`
 	FixedArgs  []string          `json:"fixed_args,omitempty"`
+	AllowArgs  []string          `json:"allow_args,omitempty"`
+	AllowExtra string            `json:"allow_extra"`
+	PathRoots  []string          `json:"path_roots,omitempty"`
+	NetMode    string            `json:"net_mode"`
+	Keys       []string          `json:"declared_keys"`
+	Diagnostic []lint.Diagnostic `json:"diagnostics"`
+}
+
+func cmdInspect(args []string) int {
+	f, err := parseFlags(args)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "palisade-lint: %v\n", err)
+		return 1
+	}
