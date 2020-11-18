@@ -102,3 +102,16 @@ fn resolve_on_path(name: &str) -> Option<PathBuf> {
         }
         for ext in &exts {
             let mut candidate = dir.join(name);
+            if !ext.is_empty() {
+                let mut file_name = candidate
+                    .file_name()
+                    .map(|s| s.to_os_string())
+                    .unwrap_or_default();
+                file_name.push(ext);
+                candidate.set_file_name(file_name);
+            }
+            if is_executable_file(&candidate) {
+                return Some(candidate);
+            }
+        }
+    }
