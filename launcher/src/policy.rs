@@ -122,3 +122,13 @@ pub fn parse(input: &str) -> Result<Document, ParseError> {
             })?;
             let name = name.trim();
             if name.is_empty() {
+                return Err(ParseError {
+                    line: line_no,
+                    message: "empty section name".to_string(),
+                });
+            }
+            if !is_ident(name) {
+                return Err(ParseError {
+                    line: line_no,
+                    message: format!("invalid section name '{name}'"),
+                });
