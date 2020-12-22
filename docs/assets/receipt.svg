@@ -48,3 +48,9 @@
         <animate attributeName="opacity" values="0;1" begin="1.0s" dur="0.3s" fill="freeze"/></text>
       <text x="66"  y="236" opacity="0">"args": <tspan fill="#c8dcea">["status","--short"]</tspan>,
         <animate attributeName="opacity" values="0;1" begin="1.4s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="256" opacity="0">"env_mode": <tspan fill="#8fd6a3">"inherit"</tspan>,
+        <animate attributeName="opacity" values="0;1" begin="1.8s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="276" opacity="0">"effective_env_keys": <tspan fill="#c8dcea">["HOME","PATH",…]</tspan>,
+        <animate attributeName="opacity" values="0;1" begin="2.2s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="296" opacity="0">"net_declared": <tspan fill="#d9b04e">"none"</tspan>,
+        <animate attributeName="opacity" values="0;1" begin="2.6s" dur="0.3s" fill="freeze"/></text>
