@@ -17,3 +17,5 @@ endif
         lint-examples clean help
 
 all: build test
+
+## build: compile both tools
