@@ -85,3 +85,17 @@ func (r *Report) Counts() (errors, warnings, infos int) {
 // which catches typos like [exce] or "programm".
 var knownKeys = map[string]map[string]bool{
 	"": {
+		"name": true,
+	},
+	"exec": {
+		"program":    true,
+		"timeout_ms": true,
+		"workdir":    true,
+	},
+	"args": {
+		"fixed":       true,
+		"allow":       true,
+		"allow_extra": true,
+	},
+	"env": {
+		"mode":   true,
