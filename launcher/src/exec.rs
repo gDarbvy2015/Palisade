@@ -106,3 +106,19 @@ fn push_kv_arr(s: &mut String, key: &str, vals: &[String], first: bool) {
     s.push_str(&json_escape(key));
     s.push_str("\":[");
     for (i, v) in vals.iter().enumerate() {
+        if i > 0 {
+            s.push(',');
+        }
+        s.push('"');
+        s.push_str(&json_escape(v));
+        s.push('"');
+    }
+    s.push(']');
+}
+
+/// Escape a string for embedding in JSON.
+fn json_escape(s: &str) -> String {
+    let mut out = String::with_capacity(s.len());
+    for c in s.chars() {
+        match c {
+            '"' => out.push_str("\\\""),
