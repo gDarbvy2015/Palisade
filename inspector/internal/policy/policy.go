@@ -60,3 +60,14 @@ func (d *Document) List(section, key string) []string {
 	for _, a := range d.Assignments {
 		if a.Section == section && a.Key == key {
 			out = append(out, a.Value)
+		}
+	}
+	return out
+}
+
+// Keys returns the sorted set of fully-qualified keys present in the document.
+func (d *Document) Keys() []string {
+	seen := map[string]struct{}{}
+	for _, a := range d.Assignments {
+		seen[fq(a.Section, a.Key)] = struct{}{}
+	}
