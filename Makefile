@@ -19,3 +19,6 @@ endif
 all: build test
 
 ## build: compile both tools
+build: build-rust build-go
+
+build-rust:
