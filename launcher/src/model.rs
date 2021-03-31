@@ -112,3 +112,22 @@ fn parse_bool(s: &str) -> Option<bool> {
         _ => None,
     }
 }
+
+fn split_kv(pair: &str) -> Option<(String, String)> {
+    let pos = pair.find('=')?;
+    let (k, v) = pair.split_at(pos);
+    let k = k.trim();
+    if k.is_empty() {
+        return None;
+    }
+    Some((k.to_string(), v[1..].trim().to_string()))
+}
+
+impl Policy {
+    /// Parse and validate a policy from source text.
+    pub fn load(input: &str) -> Result<Policy, LoadError> {
+        let doc = parse(input)?;
+        Ok(Policy::from_document(&doc)?)
+    }
+
+    /// Build a validated policy from an already-parsed document.
