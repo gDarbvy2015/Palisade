@@ -115,3 +115,16 @@ fn resolve_on_path(name: &str) -> Option<PathBuf> {
             }
         }
     }
+    None
+}
+
+/// Normalize a path to absolute form without requiring it to exist beyond the
+/// leaf. We canonicalize when possible for robust prefix comparison, and fall
+/// back to joining against the current directory.
+fn to_absolute(path: &Path) -> Result<PathBuf, ResolveError> {
+    if let Ok(canon) = std::fs::canonicalize(path) {
+        return Ok(canon);
+    }
+    if path.is_absolute() {
+        Ok(path.to_path_buf())
+    } else {
