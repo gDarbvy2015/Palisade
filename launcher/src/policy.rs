@@ -111,3 +111,14 @@ pub fn parse(input: &str) -> Result<Document, ParseError> {
     for (idx, raw) in input.lines().enumerate() {
         let line_no = idx + 1;
         let line = strip_comment(raw).trim();
+        if line.is_empty() {
+            continue;
+        }
+
+        if let Some(rest) = line.strip_prefix('[') {
+            let name = rest.strip_suffix(']').ok_or_else(|| ParseError {
+                line: line_no,
+                message: "unterminated section header (missing ']')".to_string(),
+            })?;
+            let name = name.trim();
+            if name.is_empty() {
