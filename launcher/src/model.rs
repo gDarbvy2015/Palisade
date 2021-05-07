@@ -131,3 +131,22 @@ impl Policy {
     }
 
     /// Build a validated policy from an already-parsed document.
+    pub fn from_document(doc: &Document) -> Result<Policy, ValidationError> {
+        let err = |m: String| ValidationError { message: m };
+
+        let name = doc.scalar("", "name").unwrap_or("unnamed").to_string();
+
+        let program = doc
+            .scalar("exec", "program")
+            .ok_or_else(|| err("missing required key 'exec.program'".to_string()))?
+            .to_string();
+        if program.is_empty() {
+            return Err(err("'exec.program' must not be empty".to_string()));
+        }
+
+        let timeout_ms = match doc.scalar("exec", "timeout_ms") {
+            None => 0,
+            Some(v) => v.parse::<u64>().map_err(|_| {
+                err(format!(
+                    "'exec.timeout_ms' must be a non-negative integer, got '{v}'"
+                ))
