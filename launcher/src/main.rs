@@ -119,3 +119,14 @@ fn parse_opts(args: &[String]) -> Result<Opts, CliError> {
                 i += 1;
                 receipt_path = Some(
                     args.get(i)
+                        .ok_or_else(|| err("--receipt requires a value", 1))?
+                        .clone(),
+                );
+            }
+            "--" => {
+                extra.extend_from_slice(&args[i + 1..]);
+                break;
+            }
+            other => {
+                return Err(err(format!("unexpected argument '{other}'"), 1));
+            }
