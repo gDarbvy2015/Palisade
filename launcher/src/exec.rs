@@ -153,3 +153,19 @@ pub fn effective_env(policy: &Policy) -> BTreeMap<String, String> {
         EnvMode::Inherit => {
             for (k, v) in std::env::vars() {
                 env.insert(k, v);
+            }
+            for name in &policy.env_remove {
+                env.remove(name);
+            }
+        }
+    }
+
+    for (k, v) in &policy.env_set {
+        env.insert(k.clone(), v.clone());
+    }
+
+    env
+}
+
+/// Configuration for a single execution.
+pub struct ExecPlan<'a> {
