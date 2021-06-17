@@ -12,3 +12,5 @@ timeout_ms = 10000
 
 [args]
 fixed = status
+fixed += --short
+# No extra caller arguments permitted.
