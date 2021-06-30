@@ -71,3 +71,13 @@ func (d *Document) Keys() []string {
 	for _, a := range d.Assignments {
 		seen[fq(a.Section, a.Key)] = struct{}{}
 	}
+	out := make([]string, 0, len(seen))
+	for k := range seen {
+		out = append(out, k)
+	}
+	sort.Strings(out)
+	return out
+}
+
+func fq(section, key string) string {
+	if section == "" {
