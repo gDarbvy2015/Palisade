@@ -54,3 +54,8 @@
         <animate attributeName="opacity" values="0;1" begin="2.2s" dur="0.3s" fill="freeze"/></text>
       <text x="66"  y="296" opacity="0">"net_declared": <tspan fill="#d9b04e">"none"</tspan>,
         <animate attributeName="opacity" values="0;1" begin="2.6s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="316" opacity="0">"timeout_ms": <tspan fill="#c8dcea">10000</tspan>, "duration_ms": <tspan fill="#c8dcea">42</tspan>,
+        <animate attributeName="opacity" values="0;1" begin="3.0s" dur="0.3s" fill="freeze"/></text>
+      <text x="66"  y="336" opacity="0">"outcome": <tspan fill="#8fd6a3">"exited"</tspan>, "exit_code": <tspan fill="#8fd6a3">0</tspan>
+        <animate attributeName="opacity" values="0;1" begin="3.4s" dur="0.3s" fill="freeze"/></text>
+      <text x="48"  y="356" opacity="0"><tspan fill="#d98a4e">}</tspan>
