@@ -132,3 +132,13 @@ pub fn parse(input: &str) -> Result<Document, ParseError> {
                     line: line_no,
                     message: format!("invalid section name '{name}'"),
                 });
+            }
+            section = name.to_string();
+            continue;
+        }
+
+        // Assignment: key = value or key += value.
+        let (key_part, value, append) = if let Some(pos) = line.find("+=") {
+            let (k, v) = line.split_at(pos);
+            (k.trim(), v[2..].trim(), true)
+        } else if let Some(pos) = line.find('=') {
