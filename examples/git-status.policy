@@ -8,3 +8,5 @@ name = git-status
 
 [exec]
 program = git
+timeout_ms = 10000
+
