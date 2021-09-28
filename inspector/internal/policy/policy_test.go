@@ -30,3 +30,8 @@ func TestAccumulatesLists(t *testing.T) {
 	}
 	for i := range want {
 		if got[i] != want[i] {
+			t.Errorf("list[%d] = %q, want %q", i, got[i], want[i])
+		}
+	}
+}
+
