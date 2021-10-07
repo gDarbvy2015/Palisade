@@ -13,3 +13,4 @@ name = "palisade"
 path = "src/main.rs"
 
 [lib]
+name = "palisade"
