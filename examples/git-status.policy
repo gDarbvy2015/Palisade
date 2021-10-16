@@ -10,3 +10,5 @@ name = git-status
 program = git
 timeout_ms = 10000
 
+[args]
+fixed = status
