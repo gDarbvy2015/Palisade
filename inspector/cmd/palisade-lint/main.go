@@ -216,3 +216,16 @@ func cmdInspect(args []string) int {
 		fmt.Fprintf(os.Stderr, "palisade-lint: %v\n", err)
 		return 1
 	}
+	if len(f.files) != 1 {
+		fmt.Fprintln(os.Stderr, "palisade-lint: inspect requires exactly one policy file")
+		return 1
+	}
+	file := f.files[0]
+	text, err := os.ReadFile(file)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "palisade-lint: cannot read %q: %v\n", file, err)
+		return 3
+	}
+	doc, err := policy.Parse(string(text))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "palisade-lint: %v\n", err)
