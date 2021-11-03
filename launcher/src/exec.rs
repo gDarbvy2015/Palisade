@@ -137,3 +137,19 @@ fn json_escape(s: &str) -> String {
 
 /// Compute the effective environment for the child according to the policy.
 ///
+/// Returns a sorted map so the resulting environment (and the receipt) is
+/// deterministic.
+pub fn effective_env(policy: &Policy) -> BTreeMap<String, String> {
+    let mut env: BTreeMap<String, String> = BTreeMap::new();
+
+    match policy.env_mode {
+        EnvMode::Clean => {
+            for name in &policy.env_pass {
+                if let Some(val) = std::env::var_os(name) {
+                    env.insert(name.clone(), val.to_string_lossy().into_owned());
+                }
+            }
+        }
+        EnvMode::Inherit => {
+            for (k, v) in std::env::vars() {
+                env.insert(k, v);
