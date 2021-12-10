@@ -35,3 +35,8 @@ func TestAccumulatesLists(t *testing.T) {
 	}
 }
 
+func TestLastScalarWins(t *testing.T) {
+	doc, _ := Parse("k = a\nk = b\n")
+	if v, _ := doc.Scalar("", "k"); v != "b" {
+		t.Errorf("scalar = %q, want b", v)
+	}
