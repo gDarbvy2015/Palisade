@@ -114,3 +114,18 @@ var knownKeys = map[string]map[string]bool{
 // Lint runs all checks against parsed policy text and returns a Report.
 func Lint(input string) (*Report, error) {
 	doc, err := policy.Parse(input)
+	if err != nil {
+		return nil, err
+	}
+	r := &Report{}
+
+	r.checkRequired(doc)
+	r.checkTimeout(doc)
+	r.checkEnvMode(doc)
+	r.checkEnvSet(doc)
+	r.checkNetMode(doc)
+	r.checkArgsExtra(doc)
+	r.checkUnknownKeys(doc)
+	r.checkAdvisories(doc)
+
+	// Deterministic ordering: by line, then severity, then code.
