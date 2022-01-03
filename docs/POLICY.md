@@ -41,3 +41,8 @@ format is trivial to parse, diff, and audit.
 | `exec`   | `program`     | scalar | **Required.** Bare name (PATH-resolved) or a path to the executable.   |
 | `exec`   | `timeout_ms`  | scalar | Wall-clock timeout in milliseconds. `0` or absent = no timeout.        |
 | `exec`   | `workdir`     | scalar | Working directory for the child process.                               |
+| `args`   | `fixed`       | list   | Arguments always prepended, in order.                                  |
+| `args`   | `allow`       | list   | Allow-list of additional caller-supplied arguments.                    |
+| `args`   | `allow_extra` | scalar | Boolean. When true, any caller argument is permitted.                  |
+| `env`    | `mode`        | scalar | `clean` (default) or `inherit`.                                        |
+| `env`    | `pass`        | list   | (clean mode) Names copied from the parent environment if present.      |
