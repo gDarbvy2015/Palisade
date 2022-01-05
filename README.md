@@ -138,3 +138,23 @@ mode = none                    # "none" (default) or "allow". ADVISORY ONLY — 
 
 ### The section register
 
+Full per-key detail is in the normative spec [`docs/POLICY.md`](docs/POLICY.md). In brief:
+`exec.program` is the only **required** key; `args` splits into a `fixed` prefix and an
+`allow` list gated by `allow_extra`; `env` is either `clean` (empty + `pass` + `set`) or
+`inherit` (parent − `remove` + `set`); `path.root` optionally confines the resolved binary;
+`net.mode` is `none`/`allow` and **advisory only**. Booleans accept `true/yes/1/on` and
+`false/no/0/off`, case-insensitive.
+
+---
+
+## 5 · The admission sequence
+
+When you run `palisade run`, a command approaches the gate and must clear five wardens in
+order. Any refusal halts admission with a distinct exit code (see [§10](#10--failure-diagnosis)).
+
+```mermaid
+flowchart TD
+    A[policy file] --> P[parse + validate policy]
+    P --> AR[validate caller args against allow-list]
+    AR --> RS[resolve executable via PATH / PATHEXT]
+    RS --> RT{under a declared path.root?}
