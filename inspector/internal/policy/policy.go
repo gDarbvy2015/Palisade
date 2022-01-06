@@ -81,3 +81,13 @@ func (d *Document) Keys() []string {
 
 func fq(section, key string) string {
 	if section == "" {
+		return key
+	}
+	return section + "." + key
+}
+
+// Parse converts policy text into a Document, or returns a *ParseError.
+func Parse(input string) (*Document, error) {
+	doc := &Document{}
+	section := ""
+
