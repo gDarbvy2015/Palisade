@@ -7,3 +7,4 @@ name = echo-demo
 
 [exec]
 program = echo
+timeout_ms = 2000
