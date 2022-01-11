@@ -9,3 +9,4 @@ Cargo.lock
 *.test
 *.out
 
+# Receipts and local artifacts
