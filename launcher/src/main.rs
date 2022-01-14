@@ -130,3 +130,14 @@ fn parse_opts(args: &[String]) -> Result<Opts, CliError> {
             other => {
                 return Err(err(format!("unexpected argument '{other}'"), 1));
             }
+        }
+        i += 1;
+    }
+
+    let policy_path = policy_path.ok_or_else(|| err("--policy <FILE> is required", 1))?;
+    Ok(Opts {
+        policy_path,
+        receipt_path,
+        extra,
+    })
+}
