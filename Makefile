@@ -22,3 +22,6 @@ all: build test
 build: build-rust build-go
 
 build-rust:
+	cargo build --release --manifest-path $(LAUNCHER_DIR)/Cargo.toml
+
+build-go:
