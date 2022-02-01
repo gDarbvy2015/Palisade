@@ -158,3 +158,23 @@ flowchart TD
     P --> AR[validate caller args against allow-list]
     AR --> RS[resolve executable via PATH / PATHEXT]
     RS --> RT{under a declared path.root?}
+    RT -->|no| X[REFUSE · exit 3]
+    RT -->|yes / none declared| EV[build filtered environment]
+    EV --> SP[spawn child · inherit stdio]
+    SP --> TO{exits before timeout?}
+    TO -->|yes| EC[record exit code]
+    TO -->|no| KL[best-effort kill · record timed_out]
+    EC --> RC[write JSON receipt]
+    KL --> RC
+```
+
+### 5.1 Argument validation
+
+With `allow_extra = false` (default), every caller argument must appear **verbatim** in
+`args.allow`, or the launcher refuses. The final argument vector is `args.fixed` followed by
+the validated caller arguments. With `allow_extra = true` the allow-list is *ignored* and any
+argument is accepted (the linter warns — see [§10](#10--failure-diagnosis)).
+
+### 5.2 Executable resolution
+
+- If `program` contains a path separator (`/` anywhere, `\` on Windows), it is used as a
