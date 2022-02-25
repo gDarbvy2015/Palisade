@@ -77,3 +77,8 @@
   <g filter="url(#soft)">
     <g id="token">
       <rect x="0" y="212" width="150" height="34" rx="6" fill="#1f2d3a"/>
+      <text x="12" y="234" fill="#8fd6a3" font-size="13">$ palisade run</text>
+      <animateTransform attributeName="transform" type="translate"
+        values="30 0; 30 0; 470 0; 470 0; 620 0; 620 0; 30 0"
+        keyTimes="0; 0.06; 0.62; 0.72; 0.86; 0.95; 1" dur="9s" repeatCount="indefinite"/>
+    </g>
