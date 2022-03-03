@@ -6,3 +6,5 @@
 #   - env.mode = inherit -> P102 (prefer clean)
 #   - args.allow_extra = true -> P103 (arbitrary args)
 #
+# palisade cannot actually prevent or permit network access; net.mode is a
+# declaration of intent recorded in the receipt.
