@@ -66,3 +66,8 @@
         <path d="M646 370 l6 12 6 -12 Z"/><path d="M666 370 l6 12 6 -12 Z"/>
         <path d="M686 370 l6 12 6 -12 Z"/><path d="M706 370 l6 12 6 -12 Z"/>
         <path d="M726 370 l6 12 6 -12 Z"/>
+      </g>
+      <animateTransform attributeName="transform" type="translate"
+        values="0 0; 0 0; 0 -150; 0 -150; 0 0"
+        keyTimes="0; 0.62; 0.78; 0.92; 1" dur="9s" repeatCount="indefinite"/>
+    </g>
