@@ -142,3 +142,14 @@ pub fn parse(input: &str) -> Result<Document, ParseError> {
             let (k, v) = line.split_at(pos);
             (k.trim(), v[2..].trim(), true)
         } else if let Some(pos) = line.find('=') {
+            let (k, v) = line.split_at(pos);
+            (k.trim(), v[1..].trim(), false)
+        } else {
+            return Err(ParseError {
+                line: line_no,
+                message: format!("expected 'key = value' but found '{line}'"),
+            });
+        };
+
+        if key_part.is_empty() {
+            return Err(ParseError {
