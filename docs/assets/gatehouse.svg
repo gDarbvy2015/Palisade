@@ -82,3 +82,8 @@
         values="30 0; 30 0; 470 0; 470 0; 620 0; 620 0; 30 0"
         keyTimes="0; 0.06; 0.62; 0.72; 0.86; 0.95; 1" dur="9s" repeatCount="indefinite"/>
     </g>
+  </g>
+
+  <!-- five wardens: each lights green in turn -->
+  <g font-size="12" text-anchor="middle">
+    <g transform="translate(210,300)">
