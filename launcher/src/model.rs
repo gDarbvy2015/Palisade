@@ -150,3 +150,22 @@ impl Policy {
                 err(format!(
                     "'exec.timeout_ms' must be a non-negative integer, got '{v}'"
                 ))
+            })?,
+        };
+
+        let workdir = doc.scalar("exec", "workdir").map(|s| s.to_string());
+
+        let fixed_args = doc
+            .list("args", "fixed")
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+        let allowed_args = doc
+            .list("args", "allow")
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+        let allow_extra_args = match doc.scalar("args", "allow_extra") {
+            None => false,
+            Some(v) => parse_bool(v)
+                .ok_or_else(|| err(format!("'args.allow_extra' must be a boolean, got '{v}'")))?,
