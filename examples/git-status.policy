@@ -16,3 +16,4 @@ fixed += --short
 # No extra caller arguments permitted.
 allow_extra = false
 
+[env]
