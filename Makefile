@@ -28,3 +28,5 @@ build-go:
 	cd $(INSPECTOR_DIR) && go build ./cmd/palisade-lint
 
 ## test: run all tests for both languages
+test: test-rust test-go
+
