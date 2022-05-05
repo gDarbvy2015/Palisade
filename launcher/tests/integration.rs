@@ -76,3 +76,13 @@ fn timeout_kills_long_child() {
             .to_string()
     } else {
         "name = slow\n\
+         [exec]\n\
+         program = sh\n\
+         timeout_ms = 300\n\
+         [args]\n\
+         fixed = -c\n\
+         fixed += sleep 5\n\
+         [env]\n\
+         mode = clean\n"
+            .to_string()
+    };
