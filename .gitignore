@@ -10,3 +10,5 @@ Cargo.lock
 *.out
 
 # Receipts and local artifacts
+*.receipt
+receipt.json
