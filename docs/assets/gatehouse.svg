@@ -71,3 +71,9 @@
         values="0 0; 0 0; 0 -150; 0 -150; 0 0"
         keyTimes="0; 0.62; 0.78; 0.92; 1" dur="9s" repeatCount="indefinite"/>
     </g>
+  </g>
+
+  <!-- the approaching command token -->
+  <g filter="url(#soft)">
+    <g id="token">
+      <rect x="0" y="212" width="150" height="34" rx="6" fill="#1f2d3a"/>
