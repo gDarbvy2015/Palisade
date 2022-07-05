@@ -14,3 +14,5 @@ timeout_ms = 10000
 fixed = status
 fixed += --short
 # No extra caller arguments permitted.
+allow_extra = false
+
