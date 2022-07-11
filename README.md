@@ -178,3 +178,23 @@ argument is accepted (the linter warns — see [§10](#10--failure-diagnosis)).
 ### 5.2 Executable resolution
 
 - If `program` contains a path separator (`/` anywhere, `\` on Windows), it is used as a
+  **path** directly (canonicalized to absolute where possible).
+- Otherwise it is a **bare name** resolved against `PATH`. On Windows `PATHEXT` is honored, so
+  `git` finds `git.exe`; if unset, a `.com/.exe/.bat/.cmd` fallback applies.
+- If any `path.root` is declared, the resolved absolute path must sit within a root or the
+  launch is refused (paths canonicalized for a robust prefix check). `path.root` constrains
+  **which binary is launched** — never what the running process may later touch.
+
+### 5.3 Environment resolution
+
+Built deterministically, then **sorted by key** before the child receives it (so execution
+and the receipt are reproducible):
+
+- **`clean`** *(default)* — empty environment; copy each `env.pass` name present in the parent;
+  then apply `env.set`.
+- **`inherit`** — full parent environment; delete each `env.remove` name; then apply `env.set`.
+
+In both modes `env.set` (`KEY=VALUE`) is applied **last** and wins.
+
+### 5.4 Timeout behaviour
+
