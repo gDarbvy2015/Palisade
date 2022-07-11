@@ -52,3 +52,12 @@ func TestNoTimeoutWarns(t *testing.T) {
 func TestInheritEnvWarns(t *testing.T) {
 	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\n[env]\nmode = inherit\n")
 	if !hasCode(r, "P102") {
+		t.Errorf("expected P102 warning, got %+v", r.Diagnostics)
+	}
+}
+
+func TestBadEnvModeIsError(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\n[env]\nmode = bogus\n")
+	if !hasCode(r, "P003") {
+		t.Errorf("expected P003, got %+v", r.Diagnostics)
+	}
