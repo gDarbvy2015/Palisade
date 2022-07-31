@@ -169,3 +169,18 @@ pub fn effective_env(policy: &Policy) -> BTreeMap<String, String> {
 
 /// Configuration for a single execution.
 pub struct ExecPlan<'a> {
+    pub policy: &'a Policy,
+    pub resolved_path: String,
+    pub args: Vec<String>,
+}
+
+/// Errors that can arise while launching the child.
+#[derive(Debug)]
+pub enum ExecError {
+    Spawn(String),
+    Wait(String),
+}
+
+impl std::fmt::Display for ExecError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
