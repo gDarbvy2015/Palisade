@@ -25,3 +25,6 @@ build-rust:
 	cargo build --release --manifest-path $(LAUNCHER_DIR)/Cargo.toml
 
 build-go:
+	cd $(INSPECTOR_DIR) && go build ./cmd/palisade-lint
+
+## test: run all tests for both languages
