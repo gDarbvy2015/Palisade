@@ -198,3 +198,23 @@ In both modes `env.set` (`KEY=VALUE`) is applied **last** and wins.
 
 ### 5.4 Timeout behaviour
 
+Enforcement is portable and stdlib-only: spawn the child, then poll its status until it exits
+or the deadline passes; on timeout, issue a **best-effort kill** and reap it, recording
+`timed_out`. The poll interval scales with the timeout, clamped to **[5 ms, 100 ms]**.
+`timeout_ms = 0` (or absent) disables the timer. A timeout maps to exit code **124**, matching
+GNU `timeout`.
+
+---
+
+## 6 · The seal of record — receipts
+
+<div align="center">
+<img src="docs/assets/receipt.svg" alt="A parchment terminal inscribing a JSON receipt line by line — policy name, resolved path, args, env mode, effective env key names, declared network mode, timeout, duration, outcome — then pressing a wax seal" width="100%"/>
+</div>
+
+Every `palisade run` inscribes a **receipt**: a single-line JSON record of what was launched
+and how it ended. Write it with `--receipt <FILE>`; omit the flag and it prints to **stderr**.
+
+```json
+{"policy_name":"git-status","program":"git","resolved_path":"/usr/bin/git",
+ "args":["status","--short"],"env_mode":"inherit",
