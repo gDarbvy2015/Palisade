@@ -14,3 +14,5 @@
 //! seccomp, namespaces, cgroups, AppContainer, job objects, or any
 //! kernel-enforced isolation. A launched program that is determined to break
 //! out (spawning children, opening sockets despite `net.mode = none`, reading
+//! files outside a root) can do so. Palisade reduces *accidental* exposure and
+//! makes intent explicit and auditable; it is not a security boundary against
