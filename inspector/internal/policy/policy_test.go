@@ -45,3 +45,7 @@ func TestLastScalarWins(t *testing.T) {
 func TestStripsCommentsAndBlanks(t *testing.T) {
 	doc, _ := Parse("# header\n\n  k = v  # trailing\n")
 	if v, _ := doc.Scalar("", "k"); v != "v" {
+		t.Errorf("scalar = %q, want v", v)
+	}
+}
+
