@@ -229,3 +229,17 @@ func cmdInspect(args []string) int {
 	doc, err := policy.Parse(string(text))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "palisade-lint: %v\n", err)
+		return 3
+	}
+	report, err := lint.Lint(string(text))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "palisade-lint: %v\n", err)
+		return 3
+	}
+
+	view := buildView(file, doc, report)
+
+	if f.jsonOut {
+		enc := json.NewEncoder(os.Stdout)
+		enc.SetIndent("", "  ")
+		if err := enc.Encode(view); err != nil {
