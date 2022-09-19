@@ -59,3 +59,9 @@
       <text x="66"  y="336" opacity="0">"outcome": <tspan fill="#8fd6a3">"exited"</tspan>, "exit_code": <tspan fill="#8fd6a3">0</tspan>
         <animate attributeName="opacity" values="0;1" begin="3.4s" dur="0.3s" fill="freeze"/></text>
       <text x="48"  y="356" opacity="0"><tspan fill="#d98a4e">}</tspan>
+        <animate attributeName="opacity" values="0;1" begin="3.8s" dur="0.3s" fill="freeze"/></text>
+    </g>
+    <!-- blinking cursor -->
+    <rect x="48" y="368" width="9" height="15" fill="#8fd6a3">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
