@@ -128,3 +128,16 @@ fn to_absolute(path: &Path) -> Result<PathBuf, ResolveError> {
     if path.is_absolute() {
         Ok(path.to_path_buf())
     } else {
+        let cwd = std::env::current_dir().map_err(|e| ResolveError::Io(e.to_string()))?;
+        Ok(cwd.join(path))
+    }
+}
+
+/// Resolve `program` to an absolute executable path and enforce `roots`.
+pub fn resolve(program: &str, roots: &[String]) -> Result<PathBuf, ResolveError> {
+    let resolved = if has_separator(program) {
+        let p = Path::new(program);
+        if !is_executable_file(p) {
+            // Allow relative paths that exist relative to cwd via canonicalize.
+            let abs = to_absolute(p)?;
+            if !is_executable_file(&abs) {
