@@ -153,3 +153,13 @@ pub fn parse(input: &str) -> Result<Document, ParseError> {
 
         if key_part.is_empty() {
             return Err(ParseError {
+                line: line_no,
+                message: "empty key".to_string(),
+            });
+        }
+        if !is_ident(key_part) {
+            return Err(ParseError {
+                line: line_no,
+                message: format!("invalid key '{key_part}'"),
+            });
+        }
