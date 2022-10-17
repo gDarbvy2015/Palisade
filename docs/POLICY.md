@@ -54,3 +54,8 @@ format is trivial to parse, diff, and audit.
 Booleans accept `true/yes/1/on` and `false/no/0/off` (case-insensitive).
 
 ## 4. Environment resolution
+
+- **clean** (default): start from an empty environment, copy each `env.pass`
+  name that exists in the parent, then apply `env.set`.
+- **inherit**: start from the full parent environment, delete each `env.remove`
+  name, then apply `env.set`.
