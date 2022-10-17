@@ -50,3 +50,7 @@ format is trivial to parse, diff, and audit.
 | `env`    | `set`         | list   | `KEY=VALUE` pairs applied last, overriding anything above.             |
 | `path`   | `root`        | list   | Allowed roots; the resolved program must live under one of them.       |
 | `net`    | `mode`        | scalar | `none` (default) or `allow`. **Advisory only** (see §6).               |
+
+Booleans accept `true/yes/1/on` and `false/no/0/off` (case-insensitive).
+
+## 4. Environment resolution
