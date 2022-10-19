@@ -169,3 +169,22 @@ impl Policy {
             None => false,
             Some(v) => parse_bool(v)
                 .ok_or_else(|| err(format!("'args.allow_extra' must be a boolean, got '{v}'")))?,
+        };
+
+        let env_mode = match doc.scalar("env", "mode") {
+            None | Some("clean") => EnvMode::Clean,
+            Some("inherit") => EnvMode::Inherit,
+            Some(other) => {
+                return Err(err(format!(
+                    "'env.mode' must be 'clean' or 'inherit', got '{other}'"
+                )))
+            }
+        };
+        let env_pass = doc
+            .list("env", "pass")
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+        let env_remove = doc
+            .list("env", "remove")
+            .iter()
