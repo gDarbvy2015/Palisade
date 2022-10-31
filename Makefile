@@ -30,3 +30,6 @@ build-go:
 ## test: run all tests for both languages
 test: test-rust test-go
 
+test-rust:
+	cargo test --manifest-path $(LAUNCHER_DIR)/Cargo.toml
+
