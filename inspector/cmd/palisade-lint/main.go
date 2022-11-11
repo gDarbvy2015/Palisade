@@ -243,3 +243,16 @@ func cmdInspect(args []string) int {
 		enc := json.NewEncoder(os.Stdout)
 		enc.SetIndent("", "  ")
 		if err := enc.Encode(view); err != nil {
+			fmt.Fprintf(os.Stderr, "palisade-lint: json encode error: %v\n", err)
+			return 3
+		}
+	} else {
+		printInspect(view)
+	}
+
+	if report.HasErrors() {
+		return 2
+	}
+	return 0
+}
+
