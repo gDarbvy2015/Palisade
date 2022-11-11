@@ -33,3 +33,6 @@ test: test-rust test-go
 test-rust:
 	cargo test --manifest-path $(LAUNCHER_DIR)/Cargo.toml
 
+test-go:
+	cd $(INSPECTOR_DIR) && go test ./...
+
