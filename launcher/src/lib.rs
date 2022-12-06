@@ -16,3 +16,4 @@
 //! out (spawning children, opening sockets despite `net.mode = none`, reading
 //! files outside a root) can do so. Palisade reduces *accidental* exposure and
 //! makes intent explicit and auditable; it is not a security boundary against
+//! a hostile binary. See the README "Security boundary" section.
