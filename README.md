@@ -218,3 +218,23 @@ and how it ended. Write it with `--receipt <FILE>`; omit the flag and it prints 
 ```json
 {"policy_name":"git-status","program":"git","resolved_path":"/usr/bin/git",
  "args":["status","--short"],"env_mode":"inherit",
+ "effective_env_keys":["HOME","PATH", ...],"net_declared":"none",
+ "timeout_ms":10000,"duration_ms":42,"outcome":"exited","exit_code":0}
+```
+
+What the seal records: `policy_name`, `program`, `resolved_path` (the exact binary chosen);
+`args` (final vector = `fixed` + validated extras); `env_mode` and `effective_env_keys` (the
+mode and the **sorted list of variable *names***); `net_declared` (the *declared* intent,
+a label not a control); `timeout_ms` and `duration_ms`; and `outcome` — `exited` (with an
+`exit_code`, possibly `null`) or `timed_out`.
+
+> [!IMPORTANT]
+> The receipt records environment **key names, never values.** A secret's *presence* may be
+> visible; its *contents* are never written. `net_declared` records what the policy claimed,
+> not what the process did on the wire.
+
+---
+
+## 7 · The threat boundary
+
+This is the most important post in the handbook. Read it before trusting the gate.
