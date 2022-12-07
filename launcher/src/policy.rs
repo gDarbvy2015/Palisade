@@ -163,3 +163,13 @@ pub fn parse(input: &str) -> Result<Document, ParseError> {
                 message: format!("invalid key '{key_part}'"),
             });
         }
+
+        doc.assignments.push(Assignment {
+            section: section.clone(),
+            key: key_part.to_string(),
+            value: value.to_string(),
+            append,
+            line: line_no,
+        });
+    }
+
