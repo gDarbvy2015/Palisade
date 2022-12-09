@@ -10,3 +10,4 @@ program = echo
 timeout_ms = 2000
 
 [args]
+# Always pass this greeting; callers may additionally pass -n.
