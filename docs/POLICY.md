@@ -46,3 +46,7 @@ format is trivial to parse, diff, and audit.
 | `args`   | `allow_extra` | scalar | Boolean. When true, any caller argument is permitted.                  |
 | `env`    | `mode`        | scalar | `clean` (default) or `inherit`.                                        |
 | `env`    | `pass`        | list   | (clean mode) Names copied from the parent environment if present.      |
+| `env`    | `remove`      | list   | (inherit mode) Names removed from the inherited environment.           |
+| `env`    | `set`         | list   | `KEY=VALUE` pairs applied last, overriding anything above.             |
+| `path`   | `root`        | list   | Allowed roots; the resolved program must live under one of them.       |
+| `net`    | `mode`        | scalar | `none` (default) or `allow`. **Advisory only** (see §6).               |
