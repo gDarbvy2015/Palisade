@@ -238,3 +238,23 @@ a label not a control); `timeout_ms` and `duration_ms`; and `outcome` — `exite
 ## 7 · The threat boundary
 
 This is the most important post in the handbook. Read it before trusting the gate.
+
+**Palisade is a userspace launcher, not a sandbox.** It provides **no** OS-kernel isolation
+and uses **no** seccomp, Linux namespaces, cgroups, ptrace, Windows job objects, or
+AppContainer. Concretely:
+
+- **`net.mode = none` does not block network access.** It records a *declaration* of intent
+  that both tools surface and that lands in the receipt; a launched program can still open
+  sockets freely — the linter says so itself (`P200`).
+- **`path.root` constrains which executable is launched**, not what the running process may
+  later read, write, or connect to.
+- **Argument and environment filtering reduce *accidental* exposure** — a stray `--force`, a
+  leaked `AWS_SECRET_ACCESS_KEY` — but do **not** contain a hostile binary. Once running, a
+  process runs with your privileges.
+
+The gate decides *who gets in and how they are dressed*; it does not follow them inside. For
+real isolation against untrusted code, run Palisade **inside** a container, VM, or OS sandbox,
+and treat that outer layer as the actual security boundary.
+
+---
+
