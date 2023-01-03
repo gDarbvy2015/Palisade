@@ -19,3 +19,4 @@
 //! a hostile binary. See the README "Security boundary" section.
 
 pub mod exec;
+pub mod model;
