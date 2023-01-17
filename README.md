@@ -278,3 +278,23 @@ examples/network-fetch.policy
   summary: 0 error(s), 2 warning(s), 1 info
 ```
 
+**Inspect a single policy as structured JSON** (the inspector never runs it):
+
+```console
+$ palisade-lint inspect --json examples/git-status.policy
+{ "file": "...", "name": "git-status", "program": "git", ... }
+```
+
+**Check a policy without executing** — resolve the program and print the plan:
+
+```console
+$ palisade check --policy examples/git-status.policy
+policy 'git-status' is valid
+  program:  git -> /usr/bin/git
+  timeout:  10000 ms
+  net:      none (declared)
+  fixed args: ["status", "--short"]
+  extra args: allow-list []
+```
+
+**Run it and capture a receipt** (the receipt's shape is detailed in [§6](#6--the-seal-of-record--receipts)):
