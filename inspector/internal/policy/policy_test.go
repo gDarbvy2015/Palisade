@@ -59,3 +59,7 @@ func TestEmptyValueAllowed(t *testing.T) {
 
 func TestRejectsUnterminatedSection(t *testing.T) {
 	_, err := Parse("[exec\n")
+	pe, ok := err.(*ParseError)
+	if !ok || pe.Line != 1 {
+		t.Errorf("expected ParseError on line 1, got %v", err)
+	}
