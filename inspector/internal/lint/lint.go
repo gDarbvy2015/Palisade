@@ -129,3 +129,17 @@ func Lint(input string) (*Report, error) {
 	r.checkAdvisories(doc)
 
 	// Deterministic ordering: by line, then severity, then code.
+	sort.SliceStable(r.Diagnostics, func(i, j int) bool {
+		a, b := r.Diagnostics[i], r.Diagnostics[j]
+		if a.Line != b.Line {
+			return a.Line < b.Line
+		}
+		if a.Severity != b.Severity {
+			return a.Severity < b.Severity
+		}
+		return a.Code < b.Code
+	})
+	return r, nil
+}
+
+func (r *Report) add(sev Severity, code, msg string, line int) {
