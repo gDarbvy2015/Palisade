@@ -17,3 +17,5 @@ fixed += --short
 allow_extra = false
 
 [env]
+mode = inherit
+# Do not leak these into the child.
