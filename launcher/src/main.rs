@@ -141,3 +141,14 @@ fn parse_opts(args: &[String]) -> Result<Opts, CliError> {
         extra,
     })
 }
+
+fn load_policy(path: &str) -> Result<Policy, CliError> {
+    let text = std::fs::read_to_string(path)
+        .map_err(|e| err(format!("cannot read policy '{path}': {e}"), 2))?;
+    Policy::load(&text).map_err(|e| err(e.to_string(), 2))
+}
+
+fn cmd_check(args: &[String]) -> Result<ExitCode, CliError> {
+    let opts = parse_opts(args)?;
+    let policy = load_policy(&opts.policy_path)?;
+    // Resolve as part of the check so users learn early if the program is
