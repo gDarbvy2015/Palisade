@@ -36,3 +36,5 @@ test-rust:
 test-go:
 	cd $(INSPECTOR_DIR) && go test ./...
 
+## fmt: format both codebases
+fmt:
