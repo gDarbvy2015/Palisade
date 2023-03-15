@@ -49,3 +49,8 @@ func TestStripsCommentsAndBlanks(t *testing.T) {
 	}
 }
 
+func TestEmptyValueAllowed(t *testing.T) {
+	doc, _ := Parse("k =\n")
+	v, ok := doc.Scalar("", "k")
+	if !ok || v != "" {
+		t.Errorf("scalar = %q ok=%v, want empty ok", v, ok)
