@@ -59,3 +59,7 @@ Booleans accept `true/yes/1/on` and `false/no/0/off` (case-insensitive).
   name that exists in the parent, then apply `env.set`.
 - **inherit**: start from the full parent environment, delete each `env.remove`
   name, then apply `env.set`.
+
+The effective environment is sorted by key before being handed to the child, so
+execution and receipts are deterministic.
+
