@@ -61,3 +61,13 @@ func TestBadEnvModeIsError(t *testing.T) {
 	if !hasCode(r, "P003") {
 		t.Errorf("expected P003, got %+v", r.Diagnostics)
 	}
+}
+
+func TestBadEnvSetIsError(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\n[env]\nset = NOEQUALS\n")
+	if !hasCode(r, "P004") {
+		t.Errorf("expected P004, got %+v", r.Diagnostics)
+	}
+}
+
+func TestNetAllowIsInfo(t *testing.T) {
