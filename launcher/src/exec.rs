@@ -184,3 +184,19 @@ pub enum ExecError {
 impl std::fmt::Display for ExecError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
+            ExecError::Spawn(m) => write!(f, "failed to spawn child process: {m}"),
+            ExecError::Wait(m) => write!(f, "failed while waiting on child process: {m}"),
+        }
+    }
+}
+
+impl std::error::Error for ExecError {}
+
+/// Execute the plan, applying the environment and timeout, and produce a
+/// [`Receipt`].
+pub fn execute(plan: &ExecPlan) -> Result<Receipt, ExecError> {
+    let policy = plan.policy;
+    let env = effective_env(policy);
+
+    let mut cmd = Command::new(&plan.resolved_path);
+    cmd.args(&plan.args);
