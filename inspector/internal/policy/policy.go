@@ -91,3 +91,14 @@ func Parse(input string) (*Document, error) {
 	doc := &Document{}
 	section := ""
 
+	lines := strings.Split(input, "\n")
+	for idx, raw := range lines {
+		lineNo := idx + 1
+		line := strings.TrimSpace(stripComment(raw))
+		if line == "" {
+			continue
+		}
+
+		if strings.HasPrefix(line, "[") {
+			if !strings.HasSuffix(line, "]") {
+				return nil, &ParseError{Line: lineNo, Message: "unterminated section header (missing ']')"}
