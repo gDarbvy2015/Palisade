@@ -194,3 +194,13 @@ fn is_ident(s: &str) -> bool {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
+    #[test]
+    fn parses_scalars_and_sections() {
+        let doc = parse("name = demo\n[exec]\nprogram = echo\ntimeout_ms = 1000\n").unwrap();
+        assert_eq!(doc.scalar("", "name"), Some("demo"));
+        assert_eq!(doc.scalar("exec", "program"), Some("echo"));
+        assert_eq!(doc.scalar("exec", "timeout_ms"), Some("1000"));
+    }
+
