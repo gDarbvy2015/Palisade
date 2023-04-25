@@ -318,3 +318,23 @@ Three ready standing orders ship in [`examples/`](examples/). Adapt, don't inven
   the child should see *only* what you name.
 - **[`git-status.policy`](examples/git-status.policy) — inherit, but prune.** `git` needs
   `HOME`, `PATH`, and credential helpers, so it *inherits* — but `AWS_SECRET_ACCESS_KEY` and
+  `GITHUB_TOKEN` are dropped and args are locked to the exact subcommand (`allow_extra = false`).
+- **[`network-fetch.policy`](examples/network-fetch.policy) — the honest warning.** A `curl`
+  invocation that *intentionally* trips three advisories (`P103`, `P102`, `P200`) so you can
+  see a looser policy — and why the linter complains.
+
+Lint all three: `make lint-examples`.
+
+---
+
+## 10 · Failure diagnosis
+
+### Launcher exit codes (`palisade`)
+
+Every refusal has its own number, so a wrapper can react precisely.
+
+| Code | Meaning |
+|:----:|---------|
+| `0` | child exited 0 / `check` succeeded |
+| `1` | usage error (bad flags, missing command) |
+| `2` | policy load / validation error |
