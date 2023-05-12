@@ -71,3 +71,12 @@ func TestBadEnvSetIsError(t *testing.T) {
 }
 
 func TestNetAllowIsInfo(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = curl\ntimeout_ms = 1\n[net]\nmode = allow\n")
+	if !hasCode(r, "P200") {
+		t.Errorf("expected P200 info, got %+v", r.Diagnostics)
+	}
+}
+
+func TestAllowExtraWarns(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\n[args]\nallow_extra = true\n")
+	if !hasCode(r, "P103") {
