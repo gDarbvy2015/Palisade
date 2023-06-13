@@ -16,3 +16,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     env.set KEY=VALUE, net mode, argument allow-list).
   - `resolve` cross-platform executable resolution (PATH + `PATHEXT` on Windows)
     with optional `path.root` confinement.
+  - `exec` environment filtering (`clean` / `inherit`), portable wall-clock
+    timeout via poll-and-kill, and a hand-rolled JSON **receipt**.
+  - `run`, `check`, `help`, and `version` subcommands with documented exit codes
