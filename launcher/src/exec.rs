@@ -200,3 +200,18 @@ pub fn execute(plan: &ExecPlan) -> Result<Receipt, ExecError> {
 
     let mut cmd = Command::new(&plan.resolved_path);
     cmd.args(&plan.args);
+    cmd.env_clear();
+    for (k, v) in &env {
+        cmd.env(k, v);
+    }
+    if let Some(dir) = &policy.workdir {
+        cmd.current_dir(dir);
+    }
+    cmd.stdin(Stdio::inherit());
+    cmd.stdout(Stdio::inherit());
+    cmd.stderr(Stdio::inherit());
+
+    let start = Instant::now();
+    let mut child = cmd.spawn().map_err(|e| ExecError::Spawn(e.to_string()))?;
+
+    let outcome = if policy.timeout_ms == 0 {
