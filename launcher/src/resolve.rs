@@ -154,3 +154,16 @@ pub fn resolve(program: &str, roots: &[String]) -> Result<PathBuf, ResolveError>
     };
 
     if roots.is_empty() {
+        return Ok(resolved);
+    }
+
+    for root in roots {
+        let root_abs = to_absolute(Path::new(root))?;
+        if resolved.starts_with(&root_abs) {
+            return Ok(resolved);
+        }
+    }
+
+    Err(ResolveError::OutsideRoots {
+        resolved: resolved.display().to_string(),
+        roots: roots.to_vec(),
