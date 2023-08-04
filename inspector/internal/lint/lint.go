@@ -158,3 +158,17 @@ func (r *Report) checkTimeout(doc *policy.Document) {
 		r.add(Warning, "P100", "no 'exec.timeout_ms' set; the child may run without a time limit", 0)
 		return
 	}
+	n, err := strconv.ParseUint(strings.TrimSpace(v), 10, 64)
+	if err != nil {
+		r.add(Error, "P002", fmt.Sprintf("'exec.timeout_ms' must be a non-negative integer, got %q", v), lineOf(doc, "exec", "timeout_ms"))
+		return
+	}
+	if n == 0 {
+		r.add(Warning, "P101", "'exec.timeout_ms = 0' disables the timeout entirely", lineOf(doc, "exec", "timeout_ms"))
+	}
+}
+
+func (r *Report) checkEnvMode(doc *policy.Document) {
+	v, ok := doc.Scalar("env", "mode")
+	if !ok {
+		return // defaults to clean
