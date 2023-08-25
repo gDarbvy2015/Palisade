@@ -11,3 +11,5 @@ timeout_ms = 2000
 
 [args]
 # Always pass this greeting; callers may additionally pass -n.
+fixed = hello from palisade
+allow = -n
