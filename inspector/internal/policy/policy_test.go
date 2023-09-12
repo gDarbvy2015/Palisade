@@ -54,3 +54,8 @@ func TestEmptyValueAllowed(t *testing.T) {
 	v, ok := doc.Scalar("", "k")
 	if !ok || v != "" {
 		t.Errorf("scalar = %q ok=%v, want empty ok", v, ok)
+	}
+}
+
+func TestRejectsUnterminatedSection(t *testing.T) {
+	_, err := Parse("[exec\n")
