@@ -258,3 +258,23 @@ and treat that outer layer as the actual security boundary.
 
 ---
 
+## 8 · Field transcripts
+
+Real output from the two wardens (`$` is the shell prompt).
+
+**Lint every example policy:**
+
+```console
+$ palisade-lint lint examples/*.policy
+examples/echo.policy
+  ok (no diagnostics)
+examples/git-status.policy
+  warning P102 (line 20): 'env.mode = inherit' exposes the full parent environment ...
+  summary: 0 error(s), 1 warning(s), 0 info
+examples/network-fetch.policy
+  warning P103 (line 21): 'args.allow_extra = true' lets callers pass arbitrary args ...
+  warning P102 (line 24): 'env.mode = inherit' exposes the full parent environment ...
+  info P200 (line 28): 'net.mode = allow' is advisory only ...
+  summary: 0 error(s), 2 warning(s), 1 info
+```
+
