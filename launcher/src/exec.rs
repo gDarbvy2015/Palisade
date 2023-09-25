@@ -231,3 +231,18 @@ pub fn execute(plan: &ExecPlan) -> Result<Receipt, ExecError> {
                         // Best-effort termination. On all platforms `kill`
                         // requests termination; we then reap the child.
                         let _ = child.kill();
+                        let _ = child.wait();
+                        break Outcome::TimedOut;
+                    }
+                    std::thread::sleep(poll);
+                }
+            }
+        }
+    };
+
+    let duration_ms = start.elapsed().as_millis();
+
+    Ok(Receipt {
+        policy_name: policy.name.clone(),
+        program: policy.program.clone(),
+        resolved_path: plan.resolved_path.clone(),
