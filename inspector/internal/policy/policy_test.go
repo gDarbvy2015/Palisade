@@ -63,3 +63,8 @@ func TestRejectsUnterminatedSection(t *testing.T) {
 	if !ok || pe.Line != 1 {
 		t.Errorf("expected ParseError on line 1, got %v", err)
 	}
+}
+
+func TestRejectsMissingEquals(t *testing.T) {
+	_, err := Parse("garbage line\n")
+	if _, ok := err.(*ParseError); !ok {
