@@ -68,3 +68,8 @@ func TestRejectsUnterminatedSection(t *testing.T) {
 func TestRejectsMissingEquals(t *testing.T) {
 	_, err := Parse("garbage line\n")
 	if _, ok := err.(*ParseError); !ok {
+		t.Errorf("expected ParseError, got %v", err)
+	}
+}
+
+func TestRejectsInvalidKey(t *testing.T) {
