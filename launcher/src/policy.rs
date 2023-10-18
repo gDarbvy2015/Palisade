@@ -173,3 +173,14 @@ pub fn parse(input: &str) -> Result<Document, ParseError> {
         });
     }
 
+    Ok(doc)
+}
+
+/// Remove an unquoted trailing comment. Because the format has no quoting,
+/// a `#` anywhere begins a comment.
+fn strip_comment(line: &str) -> &str {
+    match line.find('#') {
+        Some(pos) => &line[..pos],
+        None => line,
+    }
+}
