@@ -65,3 +65,8 @@
     <rect x="48" y="368" width="9" height="15" fill="#8fd6a3">
       <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
     </rect>
+  </g>
+
+  <!-- side tapestry: what a receipt is (and is not) -->
+  <g transform="translate(620,70)">
+    <rect x="0" y="0" width="232" height="322" rx="8" fill="url(#rcSteel)" filter="url(#rcSoft)"/>
