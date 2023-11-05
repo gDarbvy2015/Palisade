@@ -298,3 +298,23 @@ policy 'git-status' is valid
 ```
 
 **Run it and capture a receipt** (the receipt's shape is detailed in [§6](#6--the-seal-of-record--receipts)):
+
+```console
+$ palisade run --policy examples/git-status.policy --receipt receipt.json
+$ head -c 60 receipt.json
+{"policy_name":"git-status","program":"git","resolved_path...
+```
+
+Add `--strict` to `palisade-lint lint` to make CI fail on warnings, not just errors.
+
+---
+
+## 9 · Recipes from the armoury
+
+Three ready standing orders ship in [`examples/`](examples/). Adapt, don't invent.
+
+- **[`echo.policy`](examples/echo.policy) — the disciplined greeting.** Clean environment, a
+  fixed message, one allow-listed flag (`-n`), a 2-second timeout, no network. Copy this when
+  the child should see *only* what you name.
+- **[`git-status.policy`](examples/git-status.policy) — inherit, but prune.** `git` needs
+  `HOME`, `PATH`, and credential helpers, so it *inherits* — but `AWS_SECRET_ACCESS_KEY` and
