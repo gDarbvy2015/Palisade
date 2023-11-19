@@ -152,3 +152,14 @@ fn cmd_check(args: &[String]) -> Result<ExitCode, CliError> {
     let opts = parse_opts(args)?;
     let policy = load_policy(&opts.policy_path)?;
     // Resolve as part of the check so users learn early if the program is
+    // missing, but do not execute.
+    let resolved =
+        resolve(&policy.program, &policy.path_roots).map_err(|e| err(e.to_string(), 3))?;
+    println!("policy '{}' is valid", policy.name);
+    println!("  program:  {} -> {}", policy.program, resolved.display());
+    println!("  timeout:  {} ms", policy.timeout_ms);
+    println!(
+        "  net:      {}",
+        match policy.net {
+            palisade::NetMode::None => "none (declared)",
+            palisade::NetMode::Allow => "allow (declared, advisory only)",
