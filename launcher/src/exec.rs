@@ -215,3 +215,19 @@ pub fn execute(plan: &ExecPlan) -> Result<Receipt, ExecError> {
     let mut child = cmd.spawn().map_err(|e| ExecError::Spawn(e.to_string()))?;
 
     let outcome = if policy.timeout_ms == 0 {
+        let status = child.wait().map_err(|e| ExecError::Wait(e.to_string()))?;
+        Outcome::Exited(status.code())
+    } else {
+        let deadline = start + Duration::from_millis(policy.timeout_ms);
+        let poll = Duration::from_millis(pick_poll_interval(policy.timeout_ms));
+        loop {
+            match child
+                .try_wait()
+                .map_err(|e| ExecError::Wait(e.to_string()))?
+            {
+                Some(status) => break Outcome::Exited(status.code()),
+                None => {
+                    if Instant::now() >= deadline {
+                        // Best-effort termination. On all platforms `kill`
+                        // requests termination; we then reap the child.
+                        let _ = child.kill();
