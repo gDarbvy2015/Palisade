@@ -167,3 +167,16 @@ pub fn resolve(program: &str, roots: &[String]) -> Result<PathBuf, ResolveError>
     Err(ResolveError::OutsideRoots {
         resolved: resolved.display().to_string(),
         roots: roots.to_vec(),
+    })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::env;
+
+    fn known_program() -> &'static str {
+        if cfg!(windows) {
+            "cmd"
+        } else {
+            "sh"
