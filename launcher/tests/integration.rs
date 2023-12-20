@@ -86,3 +86,13 @@ fn timeout_kills_long_child() {
          mode = clean\n"
             .to_string()
     };
+    let receipt = run(&policy_text, &[]);
+    assert_eq!(receipt.outcome, Outcome::TimedOut);
+    // Should terminate close to the timeout, not run the full 5 seconds.
+    assert!(
+        receipt.duration_ms < 3000,
+        "expected quick timeout, got {} ms",
+        receipt.duration_ms
+    );
+}
+
