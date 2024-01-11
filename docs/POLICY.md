@@ -63,3 +63,7 @@ Booleans accept `true/yes/1/on` and `false/no/0/off` (case-insensitive).
 The effective environment is sorted by key before being handed to the child, so
 execution and receipts are deterministic.
 
+## 5. Argument validation
+
+When `args.allow_extra` is false (the default), every caller-supplied argument
+must appear verbatim in `args.allow`; otherwise the launcher refuses to run. The
