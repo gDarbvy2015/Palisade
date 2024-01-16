@@ -141,3 +141,16 @@ pub fn resolve(program: &str, roots: &[String]) -> Result<PathBuf, ResolveError>
             // Allow relative paths that exist relative to cwd via canonicalize.
             let abs = to_absolute(p)?;
             if !is_executable_file(&abs) {
+                return Err(ResolveError::NotAFile(program.to_string()));
+            }
+            abs
+        } else {
+            to_absolute(p)?
+        }
+    } else {
+        let found =
+            resolve_on_path(program).ok_or_else(|| ResolveError::NotFound(program.to_string()))?;
+        to_absolute(&found)?
+    };
+
+    if roots.is_empty() {
