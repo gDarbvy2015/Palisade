@@ -72,3 +72,7 @@ arguments.
 
 ## 6. Executable resolution and path roots
 
+- If `program` contains a path separator, it is treated as a path.
+- Otherwise it is resolved against `PATH` (honoring `PATHEXT` on Windows).
+- If any `path.root` is declared, the resolved absolute path must be contained
+  within at least one root, else the launch is refused. Paths are canonicalized
