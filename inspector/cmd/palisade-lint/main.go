@@ -284,3 +284,16 @@ func buildView(file string, doc *policy.Document, report *lint.Report) inspectVi
 }
 
 func printInspect(v inspectView) {
+	fmt.Printf("policy: %s (%s)\n", v.Name, v.File)
+	fmt.Printf("  program:    %s\n", v.Program)
+	fmt.Printf("  timeout_ms: %s\n", v.TimeoutMs)
+	if v.Workdir != "" {
+		fmt.Printf("  workdir:    %s\n", v.Workdir)
+	}
+	fmt.Printf("  env mode:   %s\n", v.EnvMode)
+	if len(v.EnvPass) > 0 {
+		fmt.Printf("  env pass:   %s\n", strings.Join(v.EnvPass, ", "))
+	}
+	if len(v.EnvRemove) > 0 {
+		fmt.Printf("  env remove: %s\n", strings.Join(v.EnvRemove, ", "))
+	}
