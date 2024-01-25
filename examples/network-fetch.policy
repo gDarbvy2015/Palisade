@@ -8,3 +8,5 @@
 #
 # palisade cannot actually prevent or permit network access; net.mode is a
 # declaration of intent recorded in the receipt.
+
+name = network-fetch
