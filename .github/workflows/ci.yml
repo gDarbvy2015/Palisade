@@ -48,3 +48,8 @@ jobs:
       - name: Format check
         shell: bash
         run: test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - name: Vet
+        run: go vet ./...
+      - name: Build
+        run: go build ./...
+      - name: Test
