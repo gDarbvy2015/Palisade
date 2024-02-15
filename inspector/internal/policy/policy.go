@@ -102,3 +102,13 @@ func Parse(input string) (*Document, error) {
 		if strings.HasPrefix(line, "[") {
 			if !strings.HasSuffix(line, "]") {
 				return nil, &ParseError{Line: lineNo, Message: "unterminated section header (missing ']')"}
+			}
+			name := strings.TrimSpace(line[1 : len(line)-1])
+			if name == "" {
+				return nil, &ParseError{Line: lineNo, Message: "empty section name"}
+			}
+			if !isIdent(name) {
+				return nil, &ParseError{Line: lineNo, Message: fmt.Sprintf("invalid section name %q", name)}
+			}
+			section = name
+			continue
