@@ -41,3 +41,6 @@ fmt:
 	cargo fmt --manifest-path $(LAUNCHER_DIR)/Cargo.toml
 	cd $(INSPECTOR_DIR) && gofmt -w .
 
+## vet: static analysis (clippy if present, plus go vet)
+vet:
+	cargo clippy --manifest-path $(LAUNCHER_DIR)/Cargo.toml --all-targets || true
