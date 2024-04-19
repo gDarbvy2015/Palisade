@@ -112,3 +112,14 @@ func Parse(input string) (*Document, error) {
 			}
 			section = name
 			continue
+		}
+
+		var key, value string
+		var appendOp bool
+		if pos := strings.Index(line, "+="); pos >= 0 {
+			key = strings.TrimSpace(line[:pos])
+			value = strings.TrimSpace(line[pos+2:])
+			appendOp = true
+		} else if pos := strings.IndexByte(line, '='); pos >= 0 {
+			key = strings.TrimSpace(line[:pos])
+			value = strings.TrimSpace(line[pos+1:])
