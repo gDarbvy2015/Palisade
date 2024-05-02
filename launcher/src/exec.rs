@@ -262,3 +262,18 @@ pub fn execute(plan: &ExecPlan) -> Result<Receipt, ExecError> {
     })
 }
 
+/// Choose a polling interval that is responsive for short timeouts and cheap
+/// for long ones. Clamped to [5ms, 100ms].
+fn pick_poll_interval(timeout_ms: u64) -> u64 {
+    let candidate = timeout_ms / 20;
+    candidate.clamp(5, 100)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::model::Policy;
+
+    #[test]
+    fn clean_env_only_passes_listed() {
+        std::env::set_var("PALISADE_TEST_SECRET", "shh");
