@@ -358,3 +358,23 @@ and adds **warnings** and **info** advisories the launcher does not enforce. Exi
 
 **Diagnostic register** (as emitted by the source):
 
+- **Errors** (launcher would reject): `P000` unparseable file · `P001` missing/blank
+  `exec.program` · `P002` non-integer `timeout_ms` · `P003` bad `env.mode` · `P004` malformed
+  `env.set` entry · `P005` bad `net.mode` · `P006` non-boolean `args.allow_extra`.
+- **Warnings** (valid but risky): `P100` no timeout set · `P101` `timeout_ms = 0` disables the
+  timer · `P102` `env.mode = inherit` exposes the full parent environment · `P103`
+  `allow_extra = true` permits arbitrary args · `P104` unknown section (typo like `[exce]`) ·
+  `P105` unknown key (typo like `programm`).
+- **Info** (advisory): `P200` `net.mode = allow` cannot be enforced · `P201` program is a path
+  but no `path.root` is declared.
+
+Common launch failures, decoded: *"executable '…' not found on PATH"* → exit `3` (check
+`PATH`, or `PATHEXT` on Windows); *"resolved executable '…' is not under any allowed
+path.root"* → exit `3` (real binary, outside your roots); *"argument '…' is not in the
+allow-list"* → exit `4` (add it to `args.allow`, or set `allow_extra = true`).
+
+---
+
+## 11 · Cross-platform notes
+
+The tools are cross-platform, but the *world* they run in is not.
