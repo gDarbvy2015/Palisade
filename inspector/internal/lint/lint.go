@@ -172,3 +172,18 @@ func (r *Report) checkEnvMode(doc *policy.Document) {
 	v, ok := doc.Scalar("env", "mode")
 	if !ok {
 		return // defaults to clean
+	}
+	switch v {
+	case "clean", "inherit":
+	default:
+		r.add(Error, "P003", fmt.Sprintf("'env.mode' must be 'clean' or 'inherit', got %q", v), lineOf(doc, "env", "mode"))
+	}
+	if v == "inherit" {
+		r.add(Warning, "P102", "'env.mode = inherit' exposes the full parent environment to the child; prefer 'clean' with an explicit pass list", lineOf(doc, "env", "mode"))
+	}
+}
+
+func (r *Report) checkEnvSet(doc *policy.Document) {
+	for _, entry := range doc.List("env", "set") {
+		if !strings.Contains(entry, "=") || strings.HasPrefix(strings.TrimSpace(entry), "=") {
+			r.add(Error, "P004", fmt.Sprintf("'env.set' entries must be KEY=VALUE, got %q", entry), lineOf(doc, "env", "set"))
