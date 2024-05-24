@@ -96,3 +96,13 @@ fn timeout_kills_long_child() {
     );
 }
 
+#[test]
+fn receipt_json_roundtrips_keys() {
+    let receipt = run(&echo_policy(false), &[]);
+    let json = receipt.to_json();
+    for key in [
+        "policy_name",
+        "program",
+        "resolved_path",
+        "args",
+        "env_mode",
