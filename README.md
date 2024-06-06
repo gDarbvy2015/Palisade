@@ -378,3 +378,23 @@ allow-list"* → exit `4` (add it to `args.allow`, or set `allow_extra = true`).
 ## 11 · Cross-platform notes
 
 The tools are cross-platform, but the *world* they run in is not.
+
+- **`PATHEXT` on Windows.** Bare-name resolution honors `PATHEXT` so `git` finds `git.exe`;
+  if unset, it falls back to `.com`, `.exe`, `.bat`, `.cmd`, and an exact match.
+- **`echo` is not portable.** `examples/echo.policy` targets `echo`, a real binary on Unix
+  (`/bin/echo`) but a **shell builtin** on Windows (no `echo.exe`). On Windows prefer the
+  `git-status` example, or point `exec.program` at `cmd` with `fixed = /C` then `fixed += echo`.
+  **Linting works identically everywhere** — the inspector never launches.
+- **Path separators.** `program` is a path if it contains `/` anywhere, or `\` on Windows.
+- **Signals vs. kill.** On Unix a signal-terminated child may report no exit code; the receipt
+  records `outcome: "exited"` with `null`, mapped to exit `1`. Timeout kill is best-effort.
+- **Make on Windows.** The [`Makefile`](Makefile) detects `Windows_NT` and targets
+  `palisade-lint.exe` for `lint-examples`.
+
+---
+
+## 12 · Limitations & roadmap
+
+### Limitations (by design)
+
+- **No isolation.** See [§7](#7--the-threat-boundary). No sandboxing primitives are used.
