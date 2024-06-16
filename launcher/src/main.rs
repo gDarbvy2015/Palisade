@@ -174,3 +174,14 @@ fn cmd_check(args: &[String]) -> Result<ExitCode, CliError> {
     Ok(ExitCode::SUCCESS)
 }
 
+fn cmd_run(args: &[String]) -> Result<ExitCode, CliError> {
+    let opts = parse_opts(args)?;
+    let policy = load_policy(&opts.policy_path)?;
+
+    policy
+        .check_args(&opts.extra)
+        .map_err(|e| err(e.to_string(), 4))?;
+
+    let resolved =
+        resolve(&policy.program, &policy.path_roots).map_err(|e| err(e.to_string(), 3))?;
+
