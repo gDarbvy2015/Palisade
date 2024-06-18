@@ -143,3 +143,18 @@ func Lint(input string) (*Report, error) {
 }
 
 func (r *Report) add(sev Severity, code, msg string, line int) {
+	r.Diagnostics = append(r.Diagnostics, Diagnostic{Severity: sev, Code: code, Message: msg, Line: line})
+}
+
+func (r *Report) checkRequired(doc *policy.Document) {
+	if v, ok := doc.Scalar("exec", "program"); !ok || strings.TrimSpace(v) == "" {
+		r.add(Error, "P001", "missing required key 'exec.program'", 0)
+	}
+}
+
+func (r *Report) checkTimeout(doc *policy.Document) {
+	v, ok := doc.Scalar("exec", "timeout_ms")
+	if !ok {
+		r.add(Warning, "P100", "no 'exec.timeout_ms' set; the child may run without a time limit", 0)
+		return
+	}
