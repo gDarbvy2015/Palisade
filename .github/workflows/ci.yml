@@ -53,3 +53,8 @@ jobs:
       - name: Build
         run: go build ./...
       - name: Test
+        run: go test ./...
+
+  examples:
+    name: Lint example policies
+    runs-on: ubuntu-latest
