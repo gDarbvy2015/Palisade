@@ -188,3 +188,22 @@ impl Policy {
         let env_remove = doc
             .list("env", "remove")
             .iter()
+            .map(|s| s.to_string())
+            .collect();
+        let mut env_set = Vec::new();
+        for raw in doc.list("env", "set") {
+            let kv = split_kv(raw)
+                .ok_or_else(|| err(format!("'env.set' entries must be KEY=VALUE, got '{raw}'")))?;
+            env_set.push(kv);
+        }
+
+        let path_roots = doc
+            .list("path", "root")
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+
+        let net = match doc.scalar("net", "mode") {
+            None | Some("none") => NetMode::None,
+            Some("allow") => NetMode::Allow,
+            Some(other) => {
