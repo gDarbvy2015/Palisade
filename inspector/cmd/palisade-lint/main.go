@@ -256,3 +256,17 @@ func cmdInspect(args []string) int {
 	return 0
 }
 
+func buildView(file string, doc *policy.Document, report *lint.Report) inspectView {
+	scalar := func(section, key, def string) string {
+		if v, ok := doc.Scalar(section, key); ok {
+			return v
+		}
+		return def
+	}
+	return inspectView{
+		File:       file,
+		Name:       scalar("", "name", "unnamed"),
+		Program:    scalar("exec", "program", ""),
+		TimeoutMs:  scalar("exec", "timeout_ms", "0 (none)"),
+		Workdir:    scalar("exec", "workdir", ""),
+		EnvMode:    scalar("env", "mode", "clean"),
