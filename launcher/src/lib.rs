@@ -23,3 +23,5 @@ pub mod model;
 pub mod policy;
 pub mod resolve;
 
+pub use exec::{effective_env, execute, ExecError, ExecPlan, Outcome, Receipt};
+pub use model::{EnvMode, LoadError, NetMode, Policy, ValidationError};
