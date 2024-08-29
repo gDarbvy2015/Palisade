@@ -13,3 +13,4 @@ Cargo.lock
 *.receipt
 receipt.json
 
+# Editor / OS
