@@ -180,3 +180,16 @@ mod tests {
             "cmd"
         } else {
             "sh"
+        }
+    }
+
+    #[test]
+    fn resolves_known_program_on_path() {
+        let p = resolve(known_program(), &[]).expect("should resolve a common system program");
+        assert!(p.is_absolute());
+        assert!(is_executable_file(&p));
+    }
+
+    #[test]
+    fn unknown_program_not_found() {
+        let e = resolve("definitely-not-a-real-binary-xyz", &[]).unwrap_err();
