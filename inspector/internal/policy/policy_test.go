@@ -77,3 +77,8 @@ func TestRejectsInvalidKey(t *testing.T) {
 	if _, ok := err.(*ParseError); !ok {
 		t.Errorf("expected ParseError, got %v", err)
 	}
+}
+
+func TestKeysSortedAndUnique(t *testing.T) {
+	doc, _ := Parse("[exec]\nprogram = x\nprogram = y\n[net]\nmode = none\n")
+	keys := doc.Keys()
