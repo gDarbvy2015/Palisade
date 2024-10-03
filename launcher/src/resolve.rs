@@ -193,3 +193,16 @@ mod tests {
     #[test]
     fn unknown_program_not_found() {
         let e = resolve("definitely-not-a-real-binary-xyz", &[]).unwrap_err();
+        assert!(matches!(e, ResolveError::NotFound(_)));
+    }
+
+    #[test]
+    fn explicit_missing_path_is_error() {
+        let bogus = if cfg!(windows) {
+            "C:/nope/does/not/exist.exe"
+        } else {
+            "/nope/does/not/exist"
+        };
+        let e = resolve(bogus, &[]).unwrap_err();
+        assert!(matches!(e, ResolveError::NotAFile(_)));
+    }
