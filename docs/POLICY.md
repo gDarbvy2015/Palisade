@@ -76,3 +76,7 @@ arguments.
 - Otherwise it is resolved against `PATH` (honoring `PATHEXT` on Windows).
 - If any `path.root` is declared, the resolved absolute path must be contained
   within at least one root, else the launch is refused. Paths are canonicalized
+  where possible for a robust prefix comparison.
+
+## 7. Security boundary (important)
+
