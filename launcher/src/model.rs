@@ -226,3 +226,22 @@ impl Policy {
             env_set,
             workdir,
             net,
+            timeout_ms,
+        })
+    }
+
+    /// Validate that a set of caller-supplied arguments is permitted by the
+    /// argument policy. Returns an error listing the first disallowed value.
+    pub fn check_args(&self, extra: &[String]) -> Result<(), ValidationError> {
+        if self.allow_extra_args {
+            return Ok(());
+        }
+        for a in extra {
+            if !self.allowed_args.iter().any(|allowed| allowed == a) {
+                return Err(ValidationError {
+                    message: format!(
+                        "argument '{a}' is not in the allow-list (args.allow); \
+                         set args.allow_extra = true to permit arbitrary arguments"
+                    ),
+                });
+            }
