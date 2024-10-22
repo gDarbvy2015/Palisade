@@ -38,3 +38,6 @@ test-go:
 
 ## fmt: format both codebases
 fmt:
+	cargo fmt --manifest-path $(LAUNCHER_DIR)/Cargo.toml
+	cd $(INSPECTOR_DIR) && gofmt -w .
+
