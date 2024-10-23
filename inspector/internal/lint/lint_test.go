@@ -80,3 +80,12 @@ func TestNetAllowIsInfo(t *testing.T) {
 func TestAllowExtraWarns(t *testing.T) {
 	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\n[args]\nallow_extra = true\n")
 	if !hasCode(r, "P103") {
+		t.Errorf("expected P103, got %+v", r.Diagnostics)
+	}
+}
+
+func TestUnknownKeyWarns(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\nprogramm = typo\n")
+	if !hasCode(r, "P105") {
+		t.Errorf("expected P105 for unknown key, got %+v", r.Diagnostics)
+	}
