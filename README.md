@@ -338,3 +338,23 @@ Every refusal has its own number, so a wrapper can react precisely.
 | `0` | child exited 0 / `check` succeeded |
 | `1` | usage error (bad flags, missing command) |
 | `2` | policy load / validation error |
+| `3` | executable not found, not a file, or outside `path.root` |
+| `4` | a caller argument was not in the allow-list |
+| `5` | spawn / wait error |
+| `124` | child timed out (matches GNU `timeout`) |
+| *N* | otherwise the child's own non-zero exit code (clamped to 1–255) |
+
+### Inspector diagnostics (`palisade-lint`)
+
+The linter mirrors the launcher's hard validation (**errors** — the policy would be rejected)
+and adds **warnings** and **info** advisories the launcher does not enforce. Exit codes:
+
+| Code | Meaning |
+|:----:|---------|
+| `0` | success (no errors; and no warnings under `--strict`) |
+| `1` | usage error |
+| `2` | a policy had errors (or warnings under `--strict`) |
+| `3` | a file could not be read or parsed |
+
+**Diagnostic register** (as emitted by the source):
+
