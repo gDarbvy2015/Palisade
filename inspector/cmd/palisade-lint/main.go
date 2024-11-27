@@ -270,3 +270,17 @@ func buildView(file string, doc *policy.Document, report *lint.Report) inspectVi
 		TimeoutMs:  scalar("exec", "timeout_ms", "0 (none)"),
 		Workdir:    scalar("exec", "workdir", ""),
 		EnvMode:    scalar("env", "mode", "clean"),
+		EnvPass:    doc.List("env", "pass"),
+		EnvRemove:  doc.List("env", "remove"),
+		EnvSet:     doc.List("env", "set"),
+		FixedArgs:  doc.List("args", "fixed"),
+		AllowArgs:  doc.List("args", "allow"),
+		AllowExtra: scalar("args", "allow_extra", "false"),
+		PathRoots:  doc.List("path", "root"),
+		NetMode:    scalar("net", "mode", "none"),
+		Keys:       doc.Keys(),
+		Diagnostic: report.Diagnostics,
+	}
+}
+
+func printInspect(v inspectView) {
