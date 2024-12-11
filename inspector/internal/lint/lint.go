@@ -201,3 +201,18 @@ func (r *Report) checkNetMode(doc *policy.Document) {
 	default:
 		r.add(Error, "P005", fmt.Sprintf("'net.mode' must be 'none' or 'allow', got %q", v), lineOf(doc, "net", "mode"))
 	}
+	if v == "allow" {
+		r.add(Info, "P200", "'net.mode = allow' is advisory only; palisade cannot enforce network access in userspace", lineOf(doc, "net", "mode"))
+	}
+}
+
+func (r *Report) checkArgsExtra(doc *policy.Document) {
+	v, ok := doc.Scalar("args", "allow_extra")
+	if !ok {
+		return
+	}
+	switch strings.ToLower(v) {
+	case "true", "yes", "1", "on":
+		r.add(Warning, "P103", "'args.allow_extra = true' lets callers pass arbitrary arguments; the args allow-list is ignored", lineOf(doc, "args", "allow_extra"))
+	case "false", "no", "0", "off":
+	default:
