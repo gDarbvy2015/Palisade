@@ -67,3 +67,8 @@ execution and receipts are deterministic.
 
 When `args.allow_extra` is false (the default), every caller-supplied argument
 must appear verbatim in `args.allow`; otherwise the launcher refuses to run. The
+final argument vector is `args.fixed` followed by the validated caller
+arguments.
+
+## 6. Executable resolution and path roots
+
