@@ -12,3 +12,4 @@
 name = network-fetch
 
 [exec]
+program = curl
