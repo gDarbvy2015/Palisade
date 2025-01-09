@@ -23,3 +23,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **Go inspector (`palisade-lint`)**, stdlib only:
   - `policy` parser mirroring the Rust grammar.
   - `lint` semantic checks producing coded diagnostics (errors `P0xx`, warnings
+    `P1xx`, info `P2xx`) with deterministic ordering.
+  - `lint` and `inspect` subcommands with `--json` and `--strict` options.
+- **Examples**: `echo`, `git-status`, and `network-fetch` policies.
