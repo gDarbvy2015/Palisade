@@ -163,3 +163,14 @@ fn cmd_check(args: &[String]) -> Result<ExitCode, CliError> {
         match policy.net {
             palisade::NetMode::None => "none (declared)",
             palisade::NetMode::Allow => "allow (declared, advisory only)",
+        }
+    );
+    println!("  fixed args: {:?}", policy.fixed_args);
+    if policy.allow_extra_args {
+        println!("  extra args: any (allow_extra = true)");
+    } else {
+        println!("  extra args: allow-list {:?}", policy.allowed_args);
+    }
+    Ok(ExitCode::SUCCESS)
+}
+
