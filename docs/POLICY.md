@@ -85,3 +85,7 @@ controls**, not kernel-enforced isolation. Palisade does not use seccomp, Linux
 namespaces, cgroups, Windows job objects, or AppContainer. In particular,
 `net.mode = none` does **not** block sockets — it records a declaration that the
 launcher and linter surface. A hostile executable is not contained by palisade.
+See the project README "Security boundary" section for the full statement.
+
+## 8. Receipts
+
