@@ -215,3 +215,13 @@ mod tests {
         let doc = parse("k = a\nk = b\n").unwrap();
         assert_eq!(doc.scalar("", "k"), Some("b"));
     }
+
+    #[test]
+    fn strips_comments_and_blanks() {
+        let doc = parse("# header\n\n  k = v  # trailing\n").unwrap();
+        assert_eq!(doc.scalar("", "k"), Some("v"));
+    }
+
+    #[test]
+    fn rejects_unterminated_section() {
+        let err = parse("[exec\n").unwrap_err();
