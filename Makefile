@@ -52,3 +52,6 @@ lint-examples: build-go
 
 ## clean: remove build artifacts
 clean:
+	cargo clean --manifest-path $(LAUNCHER_DIR)/Cargo.toml || true
+	rm -f $(INSPECTOR_DIR)/palisade-lint $(INSPECTOR_DIR)/palisade-lint.exe
+
