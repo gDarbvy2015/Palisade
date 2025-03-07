@@ -19,3 +19,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - `exec` environment filtering (`clean` / `inherit`), portable wall-clock
     timeout via poll-and-kill, and a hand-rolled JSON **receipt**.
   - `run`, `check`, `help`, and `version` subcommands with documented exit codes
+    (including `124` for timeouts).
+- **Go inspector (`palisade-lint`)**, stdlib only:
