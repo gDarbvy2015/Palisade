@@ -26,3 +26,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     `P1xx`, info `P2xx`) with deterministic ordering.
   - `lint` and `inspect` subcommands with `--json` and `--strict` options.
 - **Examples**: `echo`, `git-status`, and `network-fetch` policies.
+- **Tests**: 29 Rust tests (unit + real process-execution integration incl. a
+  timeout kill) and 22 Go tests (parser + linter).
