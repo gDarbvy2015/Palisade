@@ -13,3 +13,5 @@ name = network-fetch
 
 [exec]
 program = curl
+timeout_ms = 15000
+
