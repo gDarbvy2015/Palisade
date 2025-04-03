@@ -73,3 +73,7 @@ func TestRejectsMissingEquals(t *testing.T) {
 }
 
 func TestRejectsInvalidKey(t *testing.T) {
+	_, err := Parse("bad key = v\n")
+	if _, ok := err.(*ParseError); !ok {
+		t.Errorf("expected ParseError, got %v", err)
+	}
