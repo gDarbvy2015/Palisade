@@ -10,3 +10,5 @@
 # declaration of intent recorded in the receipt.
 
 name = network-fetch
+
+[exec]
