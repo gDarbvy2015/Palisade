@@ -246,3 +246,19 @@ pub fn execute(plan: &ExecPlan) -> Result<Receipt, ExecError> {
         policy_name: policy.name.clone(),
         program: policy.program.clone(),
         resolved_path: plan.resolved_path.clone(),
+        args: plan.args.clone(),
+        env_mode: match policy.env_mode {
+            EnvMode::Clean => "clean".to_string(),
+            EnvMode::Inherit => "inherit".to_string(),
+        },
+        effective_env_keys: env.keys().cloned().collect(),
+        net_declared: match policy.net {
+            crate::model::NetMode::None => "none".to_string(),
+            crate::model::NetMode::Allow => "allow".to_string(),
+        },
+        timeout_ms: policy.timeout_ms,
+        duration_ms,
+        outcome,
+    })
+}
+
