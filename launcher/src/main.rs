@@ -185,3 +185,14 @@ fn cmd_run(args: &[String]) -> Result<ExitCode, CliError> {
     let resolved =
         resolve(&policy.program, &policy.path_roots).map_err(|e| err(e.to_string(), 3))?;
 
+    let mut full_args = policy.fixed_args.clone();
+    full_args.extend(opts.extra.iter().cloned());
+
+    let plan = ExecPlan {
+        policy: &policy,
+        resolved_path: resolved.display().to_string(),
+        args: full_args,
+    };
+
+    let receipt = execute(&plan).map_err(|e| err(e.to_string(), 5))?;
+    let json = receipt.to_json();
