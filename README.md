@@ -398,3 +398,23 @@ The tools are cross-platform, but the *world* they run in is not.
 ### Limitations (by design)
 
 - **No isolation.** See [§7](#7--the-threat-boundary). No sandboxing primitives are used.
+- **`net.mode` is advisory.** It cannot allow or block a single packet.
+- **No quoting in the policy format.** A `#` anywhere begins a comment and values cannot
+  contain a literal `#`; there is no escape sequence. This keeps the parser and audits trivial.
+- **Cooperative timeout.** Poll-based (5–100 ms granularity), not a hard real-time timer.
+- **stdio is inherited, not captured.** The receipt records outcome and timing, not output.
+
+### Roadmap
+
+A published [`CHANGELOG.md`](CHANGELOG.md) tracks releases. Anything not present in the
+current source is *not* a feature — this handbook documents only what the two wardens do
+today. Proposals belong in the issue tracker, not in this file.
+
+---
+
+## Fortress plan
+
+```
+palisade/
+├── launcher/          Rust CLI + library — the executor
+│   ├── src/           policy · model · resolve · exec · main · lib
