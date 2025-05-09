@@ -277,3 +277,19 @@ mod tests {
     #[test]
     fn clean_env_only_passes_listed() {
         std::env::set_var("PALISADE_TEST_SECRET", "shh");
+        std::env::set_var("PALISADE_TEST_PUBLIC", "ok");
+        let p = Policy::load(
+            "[exec]\nprogram = echo\n[env]\nmode = clean\npass = PALISADE_TEST_PUBLIC\n",
+        )
+        .unwrap();
+        let env = effective_env(&p);
+        assert_eq!(
+            env.get("PALISADE_TEST_PUBLIC").map(String::as_str),
+            Some("ok")
+        );
+        assert!(!env.contains_key("PALISADE_TEST_SECRET"));
+        std::env::remove_var("PALISADE_TEST_SECRET");
+        std::env::remove_var("PALISADE_TEST_PUBLIC");
+    }
+
+    #[test]
