@@ -264,3 +264,22 @@ fixed = hello
 allow = --version
 allow += -n
 [env]
+mode = clean
+pass = HOME
+set = GREETING=hi
+[net]
+mode = none
+";
+
+    #[test]
+    fn loads_full_policy() {
+        let p = Policy::load(SAMPLE).unwrap();
+        assert_eq!(p.name, "echo-demo");
+        assert_eq!(p.program, "echo");
+        assert_eq!(p.timeout_ms, 2000);
+        assert_eq!(p.fixed_args, vec!["hello"]);
+        assert_eq!(p.allowed_args, vec!["--version", "-n"]);
+        assert_eq!(p.env_mode, EnvMode::Clean);
+        assert_eq!(p.env_pass, vec!["HOME"]);
+        assert_eq!(p.env_set, vec![("GREETING".to_string(), "hi".to_string())]);
+        assert_eq!(p.net, NetMode::None);
