@@ -225,3 +225,13 @@ mod tests {
     #[test]
     fn rejects_unterminated_section() {
         let err = parse("[exec\n").unwrap_err();
+        assert_eq!(err.line, 1);
+    }
+
+    #[test]
+    fn rejects_missing_equals() {
+        let err = parse("garbage line\n").unwrap_err();
+        assert_eq!(err.line, 1);
+    }
+
+    #[test]
