@@ -107,3 +107,12 @@ func TestPathProgramWithoutRootIsInfo(t *testing.T) {
 
 func TestSeverityMarshalsAsString(t *testing.T) {
 	d := Diagnostic{Severity: Warning, Code: "P100", Message: "m"}
+	b, err := json.Marshal(d)
+	if err != nil {
+		t.Fatalf("marshal error: %v", err)
+	}
+	if !strings.Contains(string(b), `"severity":"warning"`) {
+		t.Errorf("severity not marshaled as string: %s", b)
+	}
+}
+
