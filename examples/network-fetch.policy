@@ -17,3 +17,5 @@ timeout_ms = 15000
 
 [args]
 fixed = --silent
+fixed += --show-error
+allow_extra = true
