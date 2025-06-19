@@ -308,3 +308,19 @@ mod tests {
     fn env_set_overrides() {
         let p =
             Policy::load("[exec]\nprogram = echo\n[env]\nmode = clean\nset = FOO=bar\n").unwrap();
+        let env = effective_env(&p);
+        assert_eq!(env.get("FOO").map(String::as_str), Some("bar"));
+    }
+
+    #[test]
+    fn receipt_json_is_wellformed() {
+        let r = Receipt {
+            policy_name: "n".into(),
+            program: "echo".into(),
+            resolved_path: "/bin/echo".into(),
+            args: vec!["a\"b".into()],
+            env_mode: "clean".into(),
+            effective_env_keys: vec!["HOME".into()],
+            net_declared: "none".into(),
+            timeout_ms: 1000,
+            duration_ms: 5,
