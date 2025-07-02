@@ -21,3 +21,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - `run`, `check`, `help`, and `version` subcommands with documented exit codes
     (including `124` for timeouts).
 - **Go inspector (`palisade-lint`)**, stdlib only:
+  - `policy` parser mirroring the Rust grammar.
+  - `lint` semantic checks producing coded diagnostics (errors `P0xx`, warnings
