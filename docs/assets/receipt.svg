@@ -87,3 +87,9 @@
     <!-- wax seal being pressed -->
     <g transform="translate(116,262)">
       <circle r="0" fill="url(#wax)">
+        <animate attributeName="r" values="0;0;40;40" keyTimes="0;0.45;0.55;1" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <g opacity="0" stroke="#f4d9c2" stroke-width="2" fill="none">
+        <path d="M-16 -6 h32 M-16 4 h32 M-10 -14 v28 M10 -14 v28"/>
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.62;1" dur="8s" repeatCount="indefinite"/>
+      </g>
