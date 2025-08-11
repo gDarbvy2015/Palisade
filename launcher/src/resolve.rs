@@ -206,3 +206,16 @@ mod tests {
         let e = resolve(bogus, &[]).unwrap_err();
         assert!(matches!(e, ResolveError::NotAFile(_)));
     }
+
+    #[test]
+    fn roots_reject_outside_program() {
+        // Resolve a real program, then require it live under a root it cannot
+        // possibly be under.
+        let root = if cfg!(windows) {
+            "C:/palisade-nonexistent-root"
+        } else {
+            "/palisade-nonexistent-root"
+        };
+        let e = resolve(known_program(), &[root.to_string()]).unwrap_err();
+        assert!(matches!(e, ResolveError::OutsideRoots { .. }));
+    }
