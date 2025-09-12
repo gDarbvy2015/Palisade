@@ -293,3 +293,18 @@ mod tests {
     }
 
     #[test]
+    fn inherit_env_removes_listed() {
+        std::env::set_var("PALISADE_TEST_REMOVE_ME", "bye");
+        let p = Policy::load(
+            "[exec]\nprogram = echo\n[env]\nmode = inherit\nremove = PALISADE_TEST_REMOVE_ME\n",
+        )
+        .unwrap();
+        let env = effective_env(&p);
+        assert!(!env.contains_key("PALISADE_TEST_REMOVE_ME"));
+        std::env::remove_var("PALISADE_TEST_REMOVE_ME");
+    }
+
+    #[test]
+    fn env_set_overrides() {
+        let p =
+            Policy::load("[exec]\nprogram = echo\n[env]\nmode = clean\nset = FOO=bar\n").unwrap();
