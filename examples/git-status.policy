@@ -21,3 +21,5 @@ mode = inherit
 # Do not leak these into the child.
 remove = AWS_SECRET_ACCESS_KEY
 remove += GITHUB_TOKEN
+
+[net]
