@@ -103,3 +103,8 @@
       <text y="44" fill="#3f5a73">allow-list</text>
     </g>
     <g transform="translate(390,300)">
+      <circle r="20" fill="#2a3d4f" stroke="url(#copper)" stroke-width="2"/>
+      <text y="4" fill="#f4ecd8">env</text>
+      <circle r="6" cx="0" cy="-30" fill="#8fd6a3" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.34;0.4;1" dur="9s" repeatCount="indefinite"/>
+      </circle>
