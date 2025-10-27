@@ -44,3 +44,6 @@ fmt:
 ## vet: static analysis (clippy if present, plus go vet)
 vet:
 	cargo clippy --manifest-path $(LAUNCHER_DIR)/Cargo.toml --all-targets || true
+	cd $(INSPECTOR_DIR) && go vet ./...
+
+## lint-examples: run palisade-lint over the example policies
