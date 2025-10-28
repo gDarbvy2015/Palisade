@@ -116,3 +116,13 @@ fn receipt_json_roundtrips_keys() {
         assert!(
             json.contains(&format!("\"{key}\"")),
             "missing key {key} in {json}"
+        );
+    }
+}
+
+#[test]
+fn disallowed_extra_arg_is_rejected() {
+    let policy = Policy::load(&echo_policy(false)).unwrap();
+    let bad = vec!["--inject".to_string()];
+    assert!(policy.check_args(&bad).is_err());
+}
