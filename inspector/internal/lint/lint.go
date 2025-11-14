@@ -187,3 +187,17 @@ func (r *Report) checkEnvSet(doc *policy.Document) {
 	for _, entry := range doc.List("env", "set") {
 		if !strings.Contains(entry, "=") || strings.HasPrefix(strings.TrimSpace(entry), "=") {
 			r.add(Error, "P004", fmt.Sprintf("'env.set' entries must be KEY=VALUE, got %q", entry), lineOf(doc, "env", "set"))
+		}
+	}
+}
+
+func (r *Report) checkNetMode(doc *policy.Document) {
+	v, ok := doc.Scalar("net", "mode")
+	if !ok {
+		return
+	}
+	switch v {
+	case "none", "allow":
+	default:
+		r.add(Error, "P005", fmt.Sprintf("'net.mode' must be 'none' or 'allow', got %q", v), lineOf(doc, "net", "mode"))
+	}
