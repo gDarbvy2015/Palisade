@@ -207,3 +207,22 @@ impl Policy {
             None | Some("none") => NetMode::None,
             Some("allow") => NetMode::Allow,
             Some(other) => {
+                return Err(err(format!(
+                    "'net.mode' must be 'none' or 'allow', got '{other}'"
+                )))
+            }
+        };
+
+        Ok(Policy {
+            name,
+            program,
+            path_roots,
+            fixed_args,
+            allowed_args,
+            allow_extra_args,
+            env_mode,
+            env_pass,
+            env_remove,
+            env_set,
+            workdir,
+            net,
