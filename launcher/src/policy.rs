@@ -204,3 +204,14 @@ mod tests {
         assert_eq!(doc.scalar("exec", "timeout_ms"), Some("1000"));
     }
 
+    #[test]
+    fn accumulates_lists() {
+        let doc = parse("[args]\nallow = --version\nallow += --help\n").unwrap();
+        assert_eq!(doc.list("args", "allow"), vec!["--version", "--help"]);
+    }
+
+    #[test]
+    fn last_scalar_wins() {
+        let doc = parse("k = a\nk = b\n").unwrap();
+        assert_eq!(doc.scalar("", "k"), Some("b"));
+    }
