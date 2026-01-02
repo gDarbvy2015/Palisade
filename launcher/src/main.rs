@@ -196,3 +196,14 @@ fn cmd_run(args: &[String]) -> Result<ExitCode, CliError> {
 
     let receipt = execute(&plan).map_err(|e| err(e.to_string(), 5))?;
     let json = receipt.to_json();
+
+    match &opts.receipt_path {
+        Some(path) => {
+            std::fs::write(path, format!("{json}\n"))
+                .map_err(|e| err(format!("cannot write receipt '{path}': {e}"), 5))?;
+        }
+        None => {
+            eprintln!("{json}");
+        }
+    }
+
