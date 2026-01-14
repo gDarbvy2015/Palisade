@@ -20,3 +20,5 @@ fixed = --silent
 fixed += --show-error
 allow_extra = true
 
+[env]
+mode = inherit
