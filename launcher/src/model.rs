@@ -245,3 +245,22 @@ impl Policy {
                     ),
                 });
             }
+        }
+        Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const SAMPLE: &str = "\
+name = echo-demo
+[exec]
+program = echo
+timeout_ms = 2000
+[args]
+fixed = hello
+allow = --version
+allow += -n
+[env]
