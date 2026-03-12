@@ -144,3 +144,13 @@ func Parse(input string) (*Document, error) {
 	}
 
 	return doc, nil
+}
+
+func stripComment(line string) string {
+	if pos := strings.IndexByte(line, '#'); pos >= 0 {
+		return line[:pos]
+	}
+	return line
+}
+
+func isIdent(s string) bool {
