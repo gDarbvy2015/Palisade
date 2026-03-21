@@ -89,3 +89,12 @@ func TestUnknownKeyWarns(t *testing.T) {
 	if !hasCode(r, "P105") {
 		t.Errorf("expected P105 for unknown key, got %+v", r.Diagnostics)
 	}
+}
+
+func TestUnknownSectionWarns(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = 1\n[exce]\nfoo = bar\n")
+	if !hasCode(r, "P104") {
+		t.Errorf("expected P104 for unknown section, got %+v", r.Diagnostics)
+	}
+}
+
