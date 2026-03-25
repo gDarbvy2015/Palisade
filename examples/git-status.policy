@@ -23,3 +23,5 @@ remove = AWS_SECRET_ACCESS_KEY
 remove += GITHUB_TOKEN
 
 [net]
+# `git status` is local-only.
+mode = none
