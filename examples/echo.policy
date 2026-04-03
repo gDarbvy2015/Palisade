@@ -20,3 +20,5 @@ mode = clean
 pass = HOME
 pass += PATH
 set = PALISADE_DEMO=1
+
+[net]
