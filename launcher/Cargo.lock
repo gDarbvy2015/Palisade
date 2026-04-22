@@ -4,3 +4,4 @@ version = 3
 
 [[package]]
 name = "palisade-launcher"
+version = "0.1.0"
