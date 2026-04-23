@@ -16,3 +16,4 @@ receipt.json
 # Editor / OS
 .vscode/
 .idea/
+*.swp
