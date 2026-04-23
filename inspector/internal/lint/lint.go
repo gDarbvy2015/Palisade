@@ -230,3 +230,18 @@ func (r *Report) checkUnknownKeys(doc *policy.Document) {
 		if !keys[a.Key] {
 			r.add(Warning, "P105", fmt.Sprintf("unknown key %q in section [%s]", a.Key, sectionLabel(a.Section)), a.Line)
 		}
+	}
+}
+
+func (r *Report) checkAdvisories(doc *policy.Document) {
+	// Recommend a path.root when the program is an absolute/relative path
+	// rather than a bare command, since that is where confinement matters most.
+	if prog, ok := doc.Scalar("exec", "program"); ok {
+		if len(doc.List("path", "root")) == 0 && (strings.Contains(prog, "/") || strings.Contains(prog, "\\")) {
+			r.add(Info, "P201", "program is given as a path but no 'path.root' constraint is declared", lineOf(doc, "exec", "program"))
+		}
+	}
+}
+
+// lineOf returns the source line of the last assignment for section.key, or 0.
+func lineOf(doc *policy.Document, section, key string) int {
