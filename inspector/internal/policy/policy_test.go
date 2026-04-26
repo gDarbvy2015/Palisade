@@ -82,3 +82,8 @@ func TestRejectsInvalidKey(t *testing.T) {
 func TestKeysSortedAndUnique(t *testing.T) {
 	doc, _ := Parse("[exec]\nprogram = x\nprogram = y\n[net]\nmode = none\n")
 	keys := doc.Keys()
+	want := []string{"exec.program", "net.mode"}
+	if len(keys) != len(want) {
+		t.Fatalf("keys = %v, want %v", keys, want)
+	}
+	for i := range want {
