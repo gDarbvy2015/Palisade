@@ -98,3 +98,12 @@ func TestUnknownSectionWarns(t *testing.T) {
 	}
 }
 
+func TestPathProgramWithoutRootIsInfo(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = /usr/bin/echo\ntimeout_ms = 1\n")
+	if !hasCode(r, "P201") {
+		t.Errorf("expected P201, got %+v", r.Diagnostics)
+	}
+}
+
+func TestSeverityMarshalsAsString(t *testing.T) {
+	d := Diagnostic{Severity: Warning, Code: "P100", Message: "m"}
