@@ -49,3 +49,6 @@ vet:
 ## lint-examples: run palisade-lint over the example policies
 lint-examples: build-go
 	$(LINT_BIN) lint examples/echo.policy examples/git-status.policy examples/network-fetch.policy
+
+## clean: remove build artifacts
+clean:
