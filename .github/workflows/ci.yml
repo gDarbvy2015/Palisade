@@ -67,3 +67,8 @@ jobs:
         working-directory: inspector
         run: go build -o palisade-lint ./cmd/palisade-lint
       - name: Lint examples
+        run: |
+          inspector/palisade-lint lint \
+            examples/echo.policy \
+            examples/git-status.policy \
+            examples/network-fetch.policy
