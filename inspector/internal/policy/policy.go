@@ -123,3 +123,13 @@ func Parse(input string) (*Document, error) {
 		} else if pos := strings.IndexByte(line, '='); pos >= 0 {
 			key = strings.TrimSpace(line[:pos])
 			value = strings.TrimSpace(line[pos+1:])
+		} else {
+			return nil, &ParseError{Line: lineNo, Message: fmt.Sprintf("expected 'key = value' but found %q", line)}
+		}
+
+		if key == "" {
+			return nil, &ParseError{Line: lineNo, Message: "empty key"}
+		}
+		if !isIdent(key) {
+			return nil, &ParseError{Line: lineNo, Message: fmt.Sprintf("invalid key %q", key)}
+		}
