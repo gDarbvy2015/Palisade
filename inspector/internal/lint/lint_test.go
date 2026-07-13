@@ -125,3 +125,13 @@ func TestParseErrorPropagates(t *testing.T) {
 
 func TestDiagnosticsAreOrderedByLine(t *testing.T) {
 	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = abc\nunknownkey = 1\n")
+	last := -1
+	for _, d := range r.Diagnostics {
+		if d.Line > 0 {
+			if d.Line < last {
+				t.Errorf("diagnostics not ordered by line: %+v", r.Diagnostics)
+			}
+			last = d.Line
+		}
+	}
+}
