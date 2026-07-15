@@ -245,3 +245,18 @@ func (r *Report) checkAdvisories(doc *policy.Document) {
 
 // lineOf returns the source line of the last assignment for section.key, or 0.
 func lineOf(doc *policy.Document, section, key string) int {
+	line := 0
+	for _, a := range doc.Assignments {
+		if a.Section == section && a.Key == key {
+			line = a.Line
+		}
+	}
+	return line
+}
+
+func sectionLabel(s string) string {
+	if s == "" {
+		return "(root)"
+	}
+	return s
+}
