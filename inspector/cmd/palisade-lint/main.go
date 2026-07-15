@@ -311,3 +311,17 @@ func printInspect(v inspectView) {
 		fmt.Printf("  path roots: %s\n", strings.Join(v.PathRoots, ", "))
 	}
 	fmt.Printf("  net mode:   %s\n", v.NetMode)
+	if len(v.Diagnostic) > 0 {
+		fmt.Println("  diagnostics:")
+		for _, d := range v.Diagnostic {
+			fmt.Printf("    %s %s: %s\n", d.Severity, d.Code, d.Message)
+		}
+	}
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
