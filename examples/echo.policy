@@ -17,3 +17,5 @@ allow = -n
 [env]
 # Start from an empty environment; only expose what is listed.
 mode = clean
+pass = HOME
+pass += PATH
