@@ -28,3 +28,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **Examples**: `echo`, `git-status`, and `network-fetch` policies.
 - **Tests**: 29 Rust tests (unit + real process-execution integration incl. a
   timeout kill) and 22 Go tests (parser + linter).
+- Project scaffolding: README with Mermaid diagram and an honest security
+  boundary, `Makefile`, GitHub Actions CI for both languages, `.gitignore`,
