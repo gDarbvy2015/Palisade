@@ -129,3 +129,9 @@
   </g>
 
   <!-- admittance banner -->
+  <g opacity="0">
+    <rect x="612" y="120" width="120" height="24" rx="4" fill="#1f5a37"/>
+    <text x="672" y="137" text-anchor="middle" fill="#c9f2d4" font-size="12">ADMITTED · receipt</text>
+    <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.62;0.7;0.9;1" dur="9s" repeatCount="indefinite"/>
+  </g>
+</svg>
