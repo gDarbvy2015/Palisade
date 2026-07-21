@@ -219,3 +219,17 @@ mod tests {
         let e = resolve(known_program(), &[root.to_string()]).unwrap_err();
         assert!(matches!(e, ResolveError::OutsideRoots { .. }));
     }
+
+    #[test]
+    fn roots_accept_containing_directory() {
+        let resolved = resolve(known_program(), &[]).unwrap();
+        let parent = resolved.parent().unwrap().to_path_buf();
+        // Temporarily ensure PATH is intact for the second resolution.
+        let _ = env::var_os("PATH");
+        let ok = resolve(known_program(), &[parent.display().to_string()]);
+        assert!(
+            ok.is_ok(),
+            "program should be under its own parent dir: {ok:?}"
+        );
+    }
+}
