@@ -15,3 +15,5 @@ name = network-fetch
 program = curl
 timeout_ms = 15000
 
+[args]
+fixed = --silent
