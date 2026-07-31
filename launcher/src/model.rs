@@ -283,3 +283,22 @@ mode = none
         assert_eq!(p.env_pass, vec!["HOME"]);
         assert_eq!(p.env_set, vec![("GREETING".to_string(), "hi".to_string())]);
         assert_eq!(p.net, NetMode::None);
+    }
+
+    #[test]
+    fn missing_program_is_error() {
+        let e = Policy::load("name = x\n").unwrap_err();
+        assert!(matches!(e, LoadError::Validate(_)));
+    }
+
+    #[test]
+    fn bad_timeout_is_error() {
+        let e = Policy::load("[exec]\nprogram = echo\ntimeout_ms = abc\n").unwrap_err();
+        assert!(matches!(e, LoadError::Validate(_)));
+    }
+
+    #[test]
+    fn args_allow_list_enforced() {
+        let p = Policy::load(SAMPLE).unwrap();
+        assert!(p.check_args(&["--version".to_string()]).is_ok());
+        assert!(p.check_args(&["--evil".to_string()]).is_err());
