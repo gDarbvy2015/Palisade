@@ -106,3 +106,13 @@ fn receipt_json_roundtrips_keys() {
         "resolved_path",
         "args",
         "env_mode",
+        "effective_env_keys",
+        "net_declared",
+        "timeout_ms",
+        "duration_ms",
+        "outcome",
+        "exit_code",
+    ] {
+        assert!(
+            json.contains(&format!("\"{key}\"")),
+            "missing key {key} in {json}"
