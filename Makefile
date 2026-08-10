@@ -55,3 +55,6 @@ clean:
 	cargo clean --manifest-path $(LAUNCHER_DIR)/Cargo.toml || true
 	rm -f $(INSPECTOR_DIR)/palisade-lint $(INSPECTOR_DIR)/palisade-lint.exe
 
+## help: list targets
+help:
+	@grep -E '^## ' $(MAKEFILE_LIST) | sed 's/## //'
