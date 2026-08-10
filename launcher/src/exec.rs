@@ -324,3 +324,19 @@ mod tests {
             net_declared: "none".into(),
             timeout_ms: 1000,
             duration_ms: 5,
+            outcome: Outcome::Exited(Some(0)),
+        };
+        let json = r.to_json();
+        assert!(json.starts_with('{') && json.ends_with('}'));
+        assert!(json.contains("\"exit_code\":0"));
+        assert!(json.contains("a\\\"b"));
+    }
+
+    #[test]
+    fn poll_interval_clamped() {
+        assert_eq!(pick_poll_interval(0), 5);
+        assert_eq!(pick_poll_interval(20), 5);
+        assert_eq!(pick_poll_interval(2000), 100);
+        assert_eq!(pick_poll_interval(400), 20);
+    }
+}
