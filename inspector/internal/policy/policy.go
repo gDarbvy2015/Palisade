@@ -133,3 +133,14 @@ func Parse(input string) (*Document, error) {
 		if !isIdent(key) {
 			return nil, &ParseError{Line: lineNo, Message: fmt.Sprintf("invalid key %q", key)}
 		}
+
+		doc.Assignments = append(doc.Assignments, Assignment{
+			Section: section,
+			Key:     key,
+			Value:   value,
+			Append:  appendOp,
+			Line:    lineNo,
+		})
+	}
+
+	return doc, nil
