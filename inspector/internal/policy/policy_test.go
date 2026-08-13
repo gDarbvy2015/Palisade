@@ -87,3 +87,8 @@ func TestKeysSortedAndUnique(t *testing.T) {
 		t.Fatalf("keys = %v, want %v", keys, want)
 	}
 	for i := range want {
+		if keys[i] != want[i] {
+			t.Errorf("keys[%d] = %q, want %q", i, keys[i], want[i])
+		}
+	}
+}
