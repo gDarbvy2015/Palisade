@@ -216,3 +216,17 @@ func (r *Report) checkArgsExtra(doc *policy.Document) {
 		r.add(Warning, "P103", "'args.allow_extra = true' lets callers pass arbitrary arguments; the args allow-list is ignored", lineOf(doc, "args", "allow_extra"))
 	case "false", "no", "0", "off":
 	default:
+		r.add(Error, "P006", fmt.Sprintf("'args.allow_extra' must be a boolean, got %q", v), lineOf(doc, "args", "allow_extra"))
+	}
+}
+
+func (r *Report) checkUnknownKeys(doc *policy.Document) {
+	for _, a := range doc.Assignments {
+		keys, sectionKnown := knownKeys[a.Section]
+		if !sectionKnown {
+			r.add(Warning, "P104", fmt.Sprintf("unknown section [%s]", a.Section), a.Line)
+			continue
+		}
+		if !keys[a.Key] {
+			r.add(Warning, "P105", fmt.Sprintf("unknown key %q in section [%s]", a.Key, sectionLabel(a.Section)), a.Line)
+		}
