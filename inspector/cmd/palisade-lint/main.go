@@ -297,3 +297,17 @@ func printInspect(v inspectView) {
 	if len(v.EnvRemove) > 0 {
 		fmt.Printf("  env remove: %s\n", strings.Join(v.EnvRemove, ", "))
 	}
+	if len(v.EnvSet) > 0 {
+		fmt.Printf("  env set:    %s\n", strings.Join(v.EnvSet, ", "))
+	}
+	if len(v.FixedArgs) > 0 {
+		fmt.Printf("  fixed args: %s\n", strings.Join(v.FixedArgs, " "))
+	}
+	fmt.Printf("  allow_extra: %s\n", v.AllowExtra)
+	if len(v.AllowArgs) > 0 {
+		fmt.Printf("  allow args: %s\n", strings.Join(v.AllowArgs, ", "))
+	}
+	if len(v.PathRoots) > 0 {
+		fmt.Printf("  path roots: %s\n", strings.Join(v.PathRoots, ", "))
+	}
+	fmt.Printf("  net mode:   %s\n", v.NetMode)
