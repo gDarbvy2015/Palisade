@@ -17,3 +17,5 @@ receipt.json
 .vscode/
 .idea/
 *.swp
+.DS_Store
+Thumbs.db
