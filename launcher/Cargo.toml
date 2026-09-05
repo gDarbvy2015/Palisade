@@ -21,3 +21,5 @@ opt-level = 3
 lto = true
 strip = true
 
+# Stdlib only: no external dependencies.
+[dependencies]
