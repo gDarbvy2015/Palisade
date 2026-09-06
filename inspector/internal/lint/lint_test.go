@@ -116,3 +116,12 @@ func TestSeverityMarshalsAsString(t *testing.T) {
 	}
 }
 
+func TestParseErrorPropagates(t *testing.T) {
+	_, err := Lint("[unterminated\n")
+	if err == nil {
+		t.Errorf("expected parse error to propagate")
+	}
+}
+
+func TestDiagnosticsAreOrderedByLine(t *testing.T) {
+	r, _ := Lint("[exec]\nprogram = echo\ntimeout_ms = abc\nunknownkey = 1\n")
