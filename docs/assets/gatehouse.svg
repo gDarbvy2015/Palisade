@@ -124,3 +124,8 @@
       <circle r="6" cx="0" cy="-30" fill="#8fd6a3" opacity="0">
         <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.54;0.6;1" dur="9s" repeatCount="indefinite"/>
       </circle>
+      <text y="44" fill="#3f5a73">timeout_ms</text>
+    </g>
+  </g>
+
+  <!-- admittance banner -->
