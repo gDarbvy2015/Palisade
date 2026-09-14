@@ -22,3 +22,5 @@ allow_extra = true
 
 [env]
 mode = inherit
+remove = AWS_SECRET_ACCESS_KEY
+
