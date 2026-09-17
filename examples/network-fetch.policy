@@ -24,3 +24,5 @@ allow_extra = true
 mode = inherit
 remove = AWS_SECRET_ACCESS_KEY
 
+[net]
+mode = allow
