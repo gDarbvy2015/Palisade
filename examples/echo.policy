@@ -22,3 +22,5 @@ pass += PATH
 set = PALISADE_DEMO=1
 
 [net]
+# The command declares it needs no network (advisory).
+mode = none
