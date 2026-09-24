@@ -207,3 +207,14 @@ fn cmd_run(args: &[String]) -> Result<ExitCode, CliError> {
         }
     }
 
+    match receipt.outcome {
+        Outcome::TimedOut => Ok(ExitCode::from(124)),
+        Outcome::Exited(Some(0)) => Ok(ExitCode::SUCCESS),
+        Outcome::Exited(Some(code)) => {
+            // Clamp into u8 exit-code space, avoiding 0.
+            let mapped = (code & 0xff) as u8;
+            Ok(ExitCode::from(if mapped == 0 { 1 } else { mapped }))
+        }
+        Outcome::Exited(None) => Ok(ExitCode::from(1)),
+    }
+}
