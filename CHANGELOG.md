@@ -30,3 +30,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   timeout kill) and 22 Go tests (parser + linter).
 - Project scaffolding: README with Mermaid diagram and an honest security
   boundary, `Makefile`, GitHub Actions CI for both languages, `.gitignore`,
+  `.editorconfig`, MIT `LICENSE`.
+
+[0.1.0]: https://github.com/example/palisade/releases/tag/v0.1.0
