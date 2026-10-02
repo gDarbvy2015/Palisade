@@ -235,3 +235,14 @@ mod tests {
     }
 
     #[test]
+    fn rejects_invalid_key() {
+        let err = parse("bad key = v\n").unwrap_err();
+        assert_eq!(err.line, 1);
+    }
+
+    #[test]
+    fn empty_value_allowed() {
+        let doc = parse("k =\n").unwrap();
+        assert_eq!(doc.scalar("", "k"), Some(""));
+    }
+}
