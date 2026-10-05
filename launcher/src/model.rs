@@ -302,3 +302,23 @@ mode = none
         let p = Policy::load(SAMPLE).unwrap();
         assert!(p.check_args(&["--version".to_string()]).is_ok());
         assert!(p.check_args(&["--evil".to_string()]).is_err());
+    }
+
+    #[test]
+    fn allow_extra_permits_anything() {
+        let p = Policy::load("[exec]\nprogram = echo\n[args]\nallow_extra = true\n").unwrap();
+        assert!(p.check_args(&["--whatever".to_string()]).is_ok());
+    }
+
+    #[test]
+    fn bad_env_set_is_error() {
+        let e = Policy::load("[exec]\nprogram = echo\n[env]\nset = NOEQUALS\n").unwrap_err();
+        assert!(matches!(e, LoadError::Validate(_)));
+    }
+
+    #[test]
+    fn net_allow_parsed() {
+        let p = Policy::load("[exec]\nprogram = curl\n[net]\nmode = allow\n").unwrap();
+        assert_eq!(p.net, NetMode::Allow);
+    }
+}
