@@ -89,3 +89,8 @@ See the project README "Security boundary" section for the full statement.
 
 ## 8. Receipts
 
+`palisade run` emits a JSON receipt describing the policy name, program, resolved
+path, final arguments, environment mode, the sorted list of effective
+environment variable **names** (never values), declared network mode, timeout,
+measured duration, and the outcome (`exited` with an `exit_code`, or
+`timed_out`).
