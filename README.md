@@ -418,3 +418,24 @@ today. Proposals belong in the issue tracker, not in this file.
 palisade/
 ├── launcher/          Rust CLI + library — the executor
 │   ├── src/           policy · model · resolve · exec · main · lib
+│   └── tests/         end-to-end execution tests
+├── inspector/         Go CLI + packages — the inspector (never executes)
+│   ├── cmd/palisade-lint/
+│   └── internal/      policy · lint (+ tests)
+├── examples/          sample .policy files (see §9)
+├── docs/POLICY.md     normative format specification
+├── docs/assets/       handbook illustrations (SVG)
+├── Makefile           build · test · lint entry points
+└── .github/workflows/ CI for both languages
+```
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
+
+---
+
+<div align="center">
+<sub>Palisade is a gatehouse, not a dungeon — a userspace policy launcher, never a kernel sandbox.
+The gate decides who is admitted and how; it does not follow them inside.</sub>
+</div>
