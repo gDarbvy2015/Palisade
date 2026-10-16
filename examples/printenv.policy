@@ -1,0 +1,20 @@
+# examples/printenv.policy
+#
+# A read-only diagnostic policy: print the selected
+# environment a command would see, with a tight timeout.
+
+name = printenv-demo
+
+[exec]
+program = printenv
+args = PATH HOME
+timeout_ms = 1000
+
+[env]
+mode = clean
+pass = PATH
+pass += HOME
+pass += LANG
+
+[net]
+mode = none
