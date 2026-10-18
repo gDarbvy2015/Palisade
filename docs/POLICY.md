@@ -94,3 +94,23 @@ path, final arguments, environment mode, the sorted list of effective
 environment variable **names** (never values), declared network mode, timeout,
 measured duration, and the outcome (`exited` with an `exit_code`, or
 `timed_out`).
+
+
+## Worked example: allowing extra arguments
+
+A policy can fix the core arguments and still accept a small allow-list from the caller:
+
+```ini
+[exec]
+program = git
+timeout_ms = 5000
+
+[args]
+fixed = status
+allow = --short
+allow += --branch
+```
+
+`palisade-lint` reports the allow-list like any other field; anything outside `fixed` and
+`allow` is refused before the gate rises, so the worst a caller can do is ask for a
+slightly different view of the same command.
